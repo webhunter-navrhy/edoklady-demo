@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="eDoklady">
 <meta name="theme-color" content="#f5f5f5">
-<link rel="apple-touch-icon" href="icon-180.png?v=2">
-<link rel="icon" href="icon-192.png?v=2">
+<link rel="apple-touch-icon" href="icon-180.png?v=3">
+<link rel="icon" href="icon-192.png?v=3">
 <link rel="manifest" href="manifest.webmanifest?v=2">
 <link rel="preload" href="fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/roboto-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
@@ -92,8 +92,7 @@ img{-webkit-user-drag:none;pointer-events:none}
 .fab svg{width:26px;height:26px}
 
 /* doklad */
-.idc{position:relative;aspect-ratio:1.62;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.12);background:#dcebfb}
-.idc svg.bgsvg{position:absolute;inset:0;width:100%;height:100%}
+.idc{position:relative;aspect-ratio:1.62;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.12);background:#cfe6fb url(card.jpg?v=3) center/cover no-repeat}
 .idc .lab{position:absolute;left:0;right:0;top:0;height:20%;display:flex;align-items:center;padding-left:9%;font-weight:700;color:#2a2a2a}
 .idc .num{position:absolute;left:9%;top:34%;color:#2e2e2e;letter-spacing:.3px}
 
@@ -110,8 +109,6 @@ img{-webkit-user-drag:none;pointer-events:none}
 .pill svg{width:16px;height:16px;color:#2d6a1f;flex:none}
 .photo{display:block;width:92px;height:118px;margin:30px auto 0;border-radius:8px;overflow:hidden;position:relative;background:#eee}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
-.photo .ex{position:absolute;right:5px;bottom:5px;width:22px;height:22px;border-radius:5px;background:rgba(255,255,255,.8);display:grid;place-items:center}
-.photo .ex svg{width:14px;height:14px;color:#333}
 .fields{background:var(--card);border-radius:18px;margin-top:16px;padding:6px 0;box-shadow:0 0 0 1px rgba(0,0,0,.015)}
 .f{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 18px;min-height:58px;font-size:16px}
 .f .k{color:#727272;flex:none}
@@ -141,12 +138,15 @@ img{-webkit-user-drag:none;pointer-events:none}
 .btn + .btn{margin-top:10px}
 
 /* souhlas */
-.cons{padding:0 22px}
-.cons .lbl{font-size:12.5px;color:#777;margin:22px 0 6px}
-.cons .val{font-size:15px;color:#333}
-.cons ul{list-style:none;margin:0;padding:0;font-size:15px;color:#333;line-height:1.62;position:relative}
-.cons .ii{position:absolute;right:-4px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;color:#8a8a8a}
-.cons .ii svg{width:18px;height:18px}
+.cons{padding:22px 16px 0}
+.cons .cc{background:#fff;border-radius:10px;padding:14px 16px 16px;margin-bottom:10px}
+.cons .lbl{font-size:12px;color:#6f6f6f;margin:0 0 6px;display:flex;align-items:center;gap:5px}
+.cons .cc .lbl+.lbl,.cons ul+.lbl{margin-top:16px}
+.cons .val{font-size:15px;color:#2b2b2b}
+.cons ul{list-style:none;margin:0;padding:0 0 0 8px;font-size:15px;color:#2b2b2b;line-height:1.65}
+.cons li::before{content:"•";margin-right:8px;color:#444}
+.cons .ii{width:20px;height:20px;display:grid;place-items:center;color:#3a69a8;margin:-4px 0}
+.cons .ii svg{width:15px;height:15px}
 
 /* kamera */
 .cam{background:#000;color:#fff}
@@ -166,6 +166,8 @@ img{-webkit-user-drag:none;pointer-events:none}
 /* výsledek */
 .done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 30px;text-align:center}
 .circle{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;background:#e8f3e5;color:#2d6a1f;margin-bottom:22px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+.circle.ok{background:radial-gradient(circle at 30% 25%,#f3e9fb,#dcd6f4 55%,#cfe2f7);color:#2f4f8f}.circle.ok svg{stroke-width:2.6}
+.done h2.okt{font-size:16.5px;font-weight:600;color:#2b2b2b}
 .circle.no{background:#fbe8ea;color:var(--red)}
 .circle svg{width:44px;height:44px}
 @keyframes pop{from{transform:scale(.5);opacity:0}to{transform:none;opacity:1}}
@@ -305,35 +307,8 @@ const I = {
   faceok:'<svg viewBox="0 0 64 64" fill="none" stroke="#1c1c1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="25"/><path d="M21 33l8 8 14-16"/></svg>',
 };
 
-/* digitální doklad – vlnovka, růžové pruhy */
-let CARDSVG=null;
-function cardSvg(){
-  if(CARDSVG) return CARDSVG;
-  let w=''; for(let i=0;i<46;i++){ const y=(i*3.2-8).toFixed(1); w+=`<path d="M-10 ${y} C 40 ${y-9}, 70 ${+y+11}, 120 ${y} S 200 ${y-10}, 260 ${+y+2}"/>`; }
-  let c=''; for(let i=1;i<16;i++){ c+=`<ellipse cx="150" cy="70" rx="${i*7}" ry="${(i*4.2).toFixed(1)}"/>`; }
-  return CARDSVG=`<svg class="bgsvg" viewBox="0 0 240 148" preserveAspectRatio="none">
-  <defs>
-   <linearGradient id="cb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe5fb"/><stop offset=".5" stop-color="#e4f0fd"/><stop offset="1" stop-color="#d3e6fa"/></linearGradient>
-   <linearGradient id="cp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3a9c7"/><stop offset=".45" stop-color="#f6c3d8"/><stop offset=".75" stop-color="#ecd9f0"/><stop offset="1" stop-color="#dfe7fa"/></linearGradient>
-   <linearGradient id="cp2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7d1e0" stop-opacity="0"/><stop offset=".35" stop-color="#f6c4d8"/><stop offset="1" stop-color="#f2b2cc"/></linearGradient>
-   <radialGradient id="cg" cx=".62" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
-  </defs>
-  <rect width="240" height="148" fill="url(#cb)"/>
-  <path d="M0 0H240V30C190 26 150 34 110 30S30 26 0 30Z" fill="url(#cp)"/>
-  <path d="M70 148 L95 112 H240 V148Z" fill="url(#cp2)" opacity=".9"/>
-  <path d="M0 95 C 40 70, 70 125, 100 148 H0Z" fill="#c3dcf6" opacity=".55"/>
-  <rect width="240" height="148" fill="url(#cg)"/>
-  <g fill="none" stroke="#9cc3ec" stroke-width=".45" opacity=".75">${w}</g>
-  <g fill="none" stroke="#ffffff" stroke-width=".6" opacity=".55">${c}</g>
-  <g transform="translate(188 64)" opacity=".55">
-    <rect width="26" height="28" rx="2" fill="#bcd7f3"/>
-    <rect x="1.5" y="1.5" width="11" height="12" fill="#e9f2fc"/><rect x="13.5" y="14.5" width="11" height="12" fill="#e9f2fc"/>
-    <rect x="13.5" y="1.5" width="11" height="12" fill="#a9c9ee"/><rect x="1.5" y="14.5" width="11" height="12" fill="#a9c9ee"/>
-    <path d="M4 10c2-4 4-6 6-4M16 22c2-4 4-6 6-4" stroke="#fff" stroke-width="1" fill="none"/>
-  </g></svg>`;
-}
-function card(){ return `<div class="idc">${cardSvg()}<span class="lab">Občanský průkaz</span><span class="num">${OSOBA.cislo}</span></div>`; }
-const EMBLEM = `<img src="icon-512.png?v=2" alt="">`;
+function card(){ return `<div class="idc"><span class="lab">Občanský průkaz</span><span class="num">${OSOBA.cislo}</span></div>`; }
+const EMBLEM = `<img src="emblem.png?v=3" alt="">`;
 const PODPIS = `<svg class="sig" viewBox="0 0 120 34" fill="none" stroke="#1e2a55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 25c3-9 7-17 10-17s-1 13-3 16c4-7 8-11 10-9s-2 8 1 8 5-7 8-7-1 6 2 6 4-5 7-5 0 4 3 4c6 0 10-6 14-6s3 4 7 4c5 0 9-3 14-3s7 2 12 1"/><path d="M30 12c10-2 22-3 34-2"/></svg>`;
 
 /* QR vzor (náhodný, nic nenese) */
@@ -411,7 +386,7 @@ detail(back){
   return `<div class="screen${back?' back':''}">${hdr('Občanský průkaz','tab-doklady','remove')}
    <div class="body"><div class="detail-card">${card()}</div>
     <div class="pill">${I.check}Digitální výpis aktualizován ${fmtUpd(S.updated)}</div>
-    <button class="photo" data-a="foto"><img src="foto.jpg?v=2" alt=""><span class="ex">${I.expand}</span></button>
+    <button class="photo" data-a="foto"><img src="foto.jpg?v=2" alt=""></button>
     <div class="fields">${f('Číslo dokladu',OSOBA.cislo,1)}${f('Příjmení',OSOBA.prijmeni)}${f('Jméno',OSOBA.jmeno)}</div>
     <div class="fields">${f('Rodné číslo',OSOBA.rc,1)}${f('Datum narození',OSOBA.narozeni)}${f('Místo narození',OSOBA.misto)}
      <div class="f col"><span class="k">Trvalý pobyt</span><span class="v">${OSOBA.pobyt}</span></div>
@@ -473,24 +448,24 @@ scan(){
 },
 consent(){
   const sc=S.scen, l=a=>a.map(k=>`<li>${LABEL[k]}</li>`).join('');
-  return `<div class="screen" style="background:#fafafa">${hdr('Prokázání údajů','','close')}
-   <div class="body" style="padding:0"><div class="h2" style="margin-top:22px">Sdílet údaje ke kontrole</div>
+  return `<div class="screen" style="background:#f4f4f5">${hdr('Prokázání údajů','','close')}
+   <div class="body" style="padding:0"><div class="h2" style="margin-top:22px">Sdílet údaje<br>ke kontrole${sc.zprac.length&&!sc.kontrola.length?' i zpracování':''}</div>
     <div class="cons">
-     <div class="lbl">Subjekt</div><div class="val">${sc.subjekt}</div>
-     <div class="lbl">Údaje ke kontrole</div><ul>${l(sc.kontrola)}<button class="ii" data-a="i-kontrola">${I.info}</button></ul>
-     ${sc.zprac.length?`<div class="lbl">Údaje ke kontrole i zpracování</div><ul>${l(sc.zprac)}<button class="ii" data-a="i-zprac">${I.info}</button></ul>`:''}
+     <div class="cc"><div class="lbl">Subjekt</div><div class="val">${sc.subjekt}</div></div>
+     <div class="cc">${sc.kontrola.length?`<div class="lbl">Údaje ke kontrole<button class="ii" data-a="i-kontrola">${I.info}</button></div><ul>${l(sc.kontrola)}</ul>`:''}
+     ${sc.zprac.length?`<div class="lbl">Údaje ke kontrole i zpracování<button class="ii" data-a="i-zprac">${I.info}</button></div><ul>${l(sc.zprac)}</ul>`:''}</div>
     </div></div>
    <div class="foot"><button class="btn pri" data-a="share">Sdílet údaje</button><button class="btn txt" data-a="decline">Nesouhlasím</button></div></div>`;
 },
 shared(){
-  return `<div class="screen fade" style="background:#fafafa">${hdr('Prokázání údajů')}
-   <div class="done"><div class="circle">${I.check}</div><h2>Údaje byly sdíleny</h2><p>${S.scen.subjekt}</p></div>
-   <div class="foot"><button class="btn pri" data-a="domu">Domů</button></div></div>`;
+  return `<div class="screen fade" style="background:#fafafa">${hdr('Prokázání údajů','','close')}
+   <div class="done"><div class="circle ok">${I.check}</div><h2 class="okt">Úspěšně jste nasdíleli údaje</h2></div>
+   <div class="foot"><button class="btn pri" data-a="domu">Na přehled dokladů</button></div></div>`;
 },
 declined(){
   return `<div class="screen fade" style="background:#fafafa">${hdr('Prokázání údajů')}
    <div class="done"><div class="circle no">${I.x}</div><h2>Sdílení bylo odmítnuto</h2><p>Ověřovateli nebyly předány žádné údaje.</p></div>
-   <div class="foot"><button class="btn pri" data-a="domu">Domů</button></div></div>`;
+   <div class="foot"><button class="btn pri" data-a="domu">Na přehled dokladů</button></div></div>`;
 },
 };
 
@@ -498,14 +473,16 @@ function render(back){ app.innerHTML = V[S.screen](back); if(S.screen==='scan') 
   if(S.screen==='onboard'){ const sl=document.getElementById('slides'), d=[...document.querySelectorAll('#dots i')];
     sl.addEventListener('scroll',()=>{ const i=Math.round(sl.scrollLeft/sl.clientWidth); d.forEach((x,j)=>x.classList.toggle('on',i===j)); },{passive:true}); } }
 async function startCam(){
-  const cam=document.getElementById('cam');
+  const cam=document.getElementById('cam'); let kicked=false;
+  const kick=()=>{ if(kicked||S.screen!=='scan') return; kicked=true;
+    later(()=>{ cam && cam.classList.add('found'); vib(); later(()=>{ go('connecting'); later(()=>go('consent',{scen:PREPAZKA}),1150); },350); },2600); };
+  later(kick,6000);
   try{
     stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false});
     if(S.screen!=='scan'){ stopCam(); return; }
     const v=document.getElementById('vid'); v.srcObject=stream; await v.play().catch(()=>{});
   }catch(e){}
-  if(S.screen!=='scan') return;
-  later(()=>{ cam && cam.classList.add('found'); vib(); later(()=>{ go('connecting'); later(()=>go('consent',{scen:PREPAZKA}),1150); },350); },2600);
+  kick();
 }
 function nextScen(){ const sc=SCENARE[S.scIdx%SCENARE.length]; S.scIdx=(S.scIdx+1)%SCENARE.length; store.set('sc',S.scIdx); return sc; }
 function logHist(ok){ S.history.push({t:fmtFull(new Date()),s:S.scen.subjekt,sada:S.scen.sada,ok}); S.history=S.history.slice(-30); store.set('hist',S.history); }
