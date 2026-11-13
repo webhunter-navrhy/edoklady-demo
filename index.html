@@ -3,305 +3,302 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<title>eDoklady – ukázka</title>
-<meta name="description" content="Výuková ukázka aplikace eDoklady se smyšlenými údaji.">
+<title>eDoklady</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="eDoklady demo">
-<meta name="theme-color" content="#ffffff">
-<link rel="apple-touch-icon" href="icon-180.png?v=1">
-<link rel="icon" href="icon-192.png?v=1">
-<link rel="manifest" href="manifest.webmanifest?v=1">
+<meta name="apple-mobile-web-app-title" content="eDoklady">
+<meta name="theme-color" content="#f5f5f5">
+<link rel="apple-touch-icon" href="icon-180.png?v=2">
+<link rel="icon" href="icon-192.png?v=2">
+<link rel="manifest" href="manifest.webmanifest?v=2">
+<link rel="preload" href="fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/roboto-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Roboto';font-style:normal;font-weight:100 900;font-display:block;src:url(fonts/roboto-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}
+@font-face{font-family:'Roboto';font-style:normal;font-weight:100 900;font-display:block;src:url(fonts/roboto-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
 :root{
-  --blue:#2459b8; --blue-d:#1b469a; --blue-l:#e8eefb;
-  --bg:#f3f4f7; --card:#ffffff; --text:#1a1d24; --muted:#6c7380; --line:#e7e9ee;
-  --green:#1f8a4c; --red:#c8372d;
+  --blue:#2f5fa7; --blue-d:#244c88; --blue-l:#e7eef8;
+  --bg:#f5f5f5; --card:#fcfcfc; --text:#2b2b2b; --muted:#6f6f6f;
+  --red:#cf2a3b;
   --st:env(safe-area-inset-top,0px); --sb:env(safe-area-inset-bottom,0px);
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--text);
-  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  -webkit-font-smoothing:antialiased;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+  font-family:'Roboto',-apple-system,"Segoe UI",Helvetica,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;overscroll-behavior:none;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;-webkit-text-size-adjust:100%}
 body{position:fixed;inset:0;overflow:hidden}
 button{font:inherit;color:inherit;border:0;background:none;padding:0;cursor:pointer}
+img{-webkit-user-drag:none;pointer-events:none}
 #app{position:absolute;inset:0;max-width:520px;margin:0 auto;background:var(--bg);overflow:hidden}
-@media (min-width:600px){ body{background:#dfe3ea} #app{box-shadow:0 0 40px rgba(0,0,0,.08)} }
+@media (min-width:600px){ body{background:#dfe1e5} }
 
-.screen{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);animation:in .28s ease}
-.screen.back{animation:inb .28s ease}
-@keyframes in{from{transform:translateX(24px);opacity:0}to{transform:none;opacity:1}}
-@keyframes inb{from{transform:translateX(-24px);opacity:0}to{transform:none;opacity:1}}
-.fade{animation:fd .3s ease}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--bg);animation:in .26s cubic-bezier(.2,.8,.2,1)}
+.screen.back{animation:inb .26s cubic-bezier(.2,.8,.2,1)}
+@keyframes in{from{transform:translateX(30px);opacity:.3}to{transform:none;opacity:1}}
+@keyframes inb{from{transform:translateX(-30px);opacity:.3}to{transform:none;opacity:1}}
+.fade{animation:fd .25s ease}
 @keyframes fd{from{opacity:0}to{opacity:1}}
 
 /* header */
-.hdr{flex:none;padding:calc(var(--st) + 8px) 8px 6px;display:grid;grid-template-columns:44px 1fr 44px;align-items:center;background:var(--bg)}
-.hdr.white{background:#fff}
-.hdr h1{margin:0;text-align:center;font-size:15px;font-weight:600;color:#2b2f38}
-.ib{width:44px;height:44px;display:grid;place-items:center;border-radius:22px;color:#3b4150}
+.hdr{flex:none;padding:calc(var(--st) + 4px) 6px 4px;display:grid;grid-template-columns:48px 1fr 48px;align-items:center}
+.hdr h1{margin:0;text-align:center;font-size:17px;font-weight:500;color:#3a3a3a;letter-spacing:.1px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ib{width:48px;height:48px;display:grid;place-items:center;border-radius:24px;color:#3a3a3a}
 .ib:active{background:rgba(0,0,0,.06)}
-.ib svg{width:22px;height:22px}
-.body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:4px 16px 24px}
-.title{font-size:22px;font-weight:600;text-align:center;margin:10px 0 18px;letter-spacing:-.2px}
+.ib svg{width:24px;height:24px}
+.ib.red{color:var(--red)}
+.body{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 16px 28px}
+.h2{font-size:21px;font-weight:500;text-align:center;margin:14px 0 18px;color:#2f2f2f}
 
 /* splash */
-.splash{background:linear-gradient(165deg,#3a6fd8 0%,#2559c4 45%,#1c47a8 100%);color:#fff}
-.splash .top{padding:calc(var(--st) + 56px) 24px 0;text-align:center}
-.logo{width:76px;height:76px;border-radius:18px;margin:0 auto 18px;box-shadow:0 6px 18px rgba(0,0,0,.18);overflow:hidden}
-.logo svg{width:100%;height:100%;display:block}
-.splash h2{font-size:30px;font-weight:600;margin:0 0 8px;letter-spacing:-.3px}
-.splash .sub{opacity:.9;font-size:15px}
-.splash .link{display:inline-block;margin-top:18px;font-size:14px;font-weight:600;opacity:.95;text-decoration:underline;text-underline-offset:3px}
-.splash .bottom{margin-top:auto;padding:0 16px calc(var(--sb) + 22px)}
-.splash .bottom p{text-align:center;font-weight:600;font-size:15px;margin:0 0 12px}
-.acc{background:#fff;color:var(--text);border-radius:14px;overflow:hidden}
-.acc button{width:100%;display:flex;align-items:center;gap:14px;padding:16px;text-align:left}
-.acc button:active{background:#f1f4fa}
-.acc .ico{width:24px;height:24px;color:#2b3a66;flex:none}
-.acc .nm{font-weight:600;color:var(--blue);font-size:15px}
-.acc .rl{font-size:12px;color:var(--muted);margin-top:2px}
-.acc .chev{margin-left:auto;color:#9aa2b1}
-.splash .reg{display:block;width:100%;text-align:center;font-weight:600;font-size:15px;margin-top:16px;padding:6px}
-.demo-pill{position:absolute;top:calc(var(--st) + 10px);right:12px;font-size:10px;font-weight:700;letter-spacing:.8px;background:rgba(255,255,255,.18);color:#fff;padding:4px 8px;border-radius:20px}
-.demo-pill.dark{background:#fde9c8;color:#8a5a00}
+.splash{background:#2b5fb3;color:#fff;overflow:hidden}
+.splash::before{content:"";position:absolute;inset:-20%;background:
+  linear-gradient(115deg,transparent 30%,rgba(255,255,255,.07) 30% 42%,transparent 42%),
+  linear-gradient(115deg,transparent 52%,rgba(255,255,255,.05) 52% 60%,transparent 60%),
+  linear-gradient(170deg,#3c72c8 0%,#2b5fb3 45%,#2453a3 100%);z-index:0}
+.splash>*{position:relative;z-index:1}
+.splash .top{padding:calc(var(--st) + 44px) 24px 0;text-align:center}
+.logo{width:68px;height:68px;border-radius:15px;margin:0 auto 18px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.12)}
+.logo img{width:100%;height:100%;display:block}
+.splash h2{font-size:28px;font-weight:500;margin:0 0 10px}
+.splash .sub{font-size:15px;opacity:.95}
+.splash .link{display:inline-block;margin-top:16px;font-size:14px;font-weight:500}
+.splash .bottom{margin-top:auto;padding:0 16px calc(var(--sb) + 26px)}
+.splash .bottom p{text-align:center;font-weight:500;font-size:16px;margin:0 0 14px}
+.acc{background:#fff;color:var(--text);border-radius:12px;overflow:hidden}
+.acc button{width:100%;display:flex;align-items:center;gap:16px;padding:16px 16px 16px 18px;text-align:left}
+.acc button:active{background:#f0f3f8}
+.acc .ico{width:24px;height:24px;color:#404a5c;flex:none}
+.acc .nm{font-weight:500;color:var(--blue);font-size:15px;letter-spacing:.2px}
+.acc .rl{font-size:12px;color:var(--muted);margin-top:3px}
+.acc .chev{margin-left:auto;color:#8e8e8e;width:20px;height:20px}
 
-/* Face ID / PIN */
-.lock{background:#fff}
-.lock .c{flex:1;display:flex;flex-direction:column;align-items:center;padding:calc(var(--st) + 60px) 24px calc(var(--sb) + 20px)}
-.lock h3{font-size:20px;font-weight:600;margin:18px 0 6px}
-.lock .m{color:var(--muted);font-size:14px;margin-bottom:28px}
-.dots{display:flex;gap:16px;margin-bottom:34px}
-.dots i{width:13px;height:13px;border-radius:50%;border:1.5px solid #8b93a3}
-.dots i.on{background:var(--blue);border-color:var(--blue)}
-.dots.shake{animation:sh .35s}
-@keyframes sh{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-.pad{display:grid;grid-template-columns:repeat(3,76px);gap:14px 26px}
-.pad button{width:76px;height:76px;border-radius:50%;background:#f1f3f7;font-size:28px;font-weight:400}
-.pad button:active{background:#dde3ee}
-.pad .t{background:none;font-size:14px;color:var(--blue);font-weight:600}
-.faceov{position:absolute;inset:0;display:grid;place-items:center;background:rgba(0,0,0,.08);z-index:20;animation:fd .2s}
-.facebox{width:160px;height:160px;border-radius:30px;background:rgba(245,245,247,.96);box-shadow:0 10px 40px rgba(0,0,0,.18);display:grid;place-items:center;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px)}
-.facebox svg{width:64px;height:64px}
-.facebox .fl{font-size:13px;color:#333;margin-top:6px;text-align:center}
+/* Face ID */
+.faceov{position:absolute;inset:0;display:grid;place-items:center;z-index:20;animation:fd .15s}
+.facebox{width:156px;height:156px;border-radius:32px;background:rgba(242,242,247,.92);box-shadow:0 10px 40px rgba(0,0,0,.2);display:grid;place-items:center;backdrop-filter:blur(30px) saturate(1.6);-webkit-backdrop-filter:blur(30px) saturate(1.6);animation:pop .3s cubic-bezier(.2,1.3,.4,1)}
+.facebox svg{width:70px;height:70px}
+.facebox .fl{font:500 15px -apple-system,sans-serif;color:#1c1c1e;margin-top:10px;text-align:center}
 
 /* tabs */
-.tabs{flex:none;background:#fff;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:end;padding:6px 0 calc(var(--sb) + 6px);position:relative}
-.tab{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;color:#7b8292;padding:4px 0 2px}
-.tab svg{width:24px;height:24px}
-.tab.on{color:var(--blue)}
-.tab.on::before{content:"";position:absolute;top:-1px;width:56px;height:3px;border-radius:0 0 3px 3px;background:var(--blue)}
-.tabwrap{position:relative;display:flex;justify-content:center}
-.fab{width:66px;height:66px;margin-top:-34px;border-radius:50%;background:var(--blue);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:10px;font-weight:600;line-height:1.05;box-shadow:0 6px 16px rgba(36,89,184,.35);border:4px solid #fff}
+.tabs{flex:none;background:#fff;display:grid;grid-template-columns:1fr 92px 1fr;align-items:end;padding:0 0 calc(var(--sb) + 4px);position:relative;box-shadow:0 -1px 0 rgba(0,0,0,.05)}
+.tab{position:relative;display:flex;flex-direction:column;align-items:center;gap:3px;font-size:12px;color:#6e6e6e;padding:12px 0 6px}
+.tab svg{width:30px;height:30px}
+.tab.on{color:var(--blue);font-weight:700}
+.tab.on::before{content:"";position:absolute;top:0;width:44px;height:3px;border-radius:0 0 3px 3px;background:var(--blue)}
+.fabw{display:flex;justify-content:center}
+.fab{width:76px;height:76px;margin-top:-30px;margin-bottom:2px;border-radius:50%;background:var(--blue);color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:11.5px;font-weight:700;line-height:1.05}
 .fab:active{background:var(--blue-d)}
-.fab svg{width:22px;height:22px}
+.fab svg{width:26px;height:26px}
 
-/* doc card */
-.idcard{position:relative;aspect-ratio:1.585;border-radius:14px;overflow:hidden;
-  background:
-   radial-gradient(120% 90% at 85% 15%,rgba(160,215,245,.85),transparent 55%),
-   radial-gradient(90% 80% at 15% 85%,rgba(250,190,215,.9),transparent 60%),
-   radial-gradient(70% 70% at 60% 70%,rgba(190,240,225,.8),transparent 60%),
-   linear-gradient(120deg,#f6d9e6,#dfe9fb 50%,#d9f2ea);
-  box-shadow:0 8px 22px rgba(30,50,90,.14), inset 0 0 0 1px rgba(255,255,255,.6)}
-.idcard::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(115deg,rgba(255,255,255,0) 0 10px,rgba(255,255,255,.18) 10px 11px);mix-blend-mode:overlay}
-.idcard .lab{position:absolute;left:14px;top:14px;font-size:11px;font-weight:600;color:#b4386c;background:rgba(255,255,255,.55);padding:3px 8px;border-radius:6px}
-.idcard .num{position:absolute;left:16px;top:40px;font-size:10px;color:#a14a76;letter-spacing:1px;font-weight:600}
-.idcard .ph{position:absolute;left:16px;bottom:16px;width:22%;aspect-ratio:.78;border-radius:6px;overflow:hidden;opacity:.85}
-.idcard .nm{position:absolute;left:31%;bottom:22px;font-size:13px;font-weight:700;color:#3a3150;letter-spacing:.3px}
-.idcard .nm small{display:block;font-size:10px;font-weight:500;color:#6d6080;letter-spacing:0;margin-bottom:2px}
-.idcard .wave{position:absolute;right:-10%;top:20%;width:70%;opacity:.55}
-.vzor{position:absolute;right:14px;bottom:14px;font-size:20px;font-weight:800;letter-spacing:3px;color:rgba(200,55,45,.75);border:2.5px solid rgba(200,55,45,.75);padding:1px 8px;border-radius:6px;transform:rotate(-8deg)}
-.vzor.big{right:auto;left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%) rotate(-14deg);font-size:30px}
-.ok{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:var(--muted);margin:12px 0 4px}
-.ok svg{width:14px;height:14px;color:var(--green)}
-.ok.pill{display:inline-flex;background:#e9f6ee;color:#25704a;padding:5px 10px;border-radius:20px;margin:0}
+/* doklad */
+.idc{position:relative;aspect-ratio:1.62;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.12);background:#dcebfb}
+.idc svg.bgsvg{position:absolute;inset:0;width:100%;height:100%}
+.idc .lab{position:absolute;left:0;right:0;top:0;height:20%;display:flex;align-items:center;padding-left:9%;font-weight:700;color:#2a2a2a}
+.idc .num{position:absolute;left:9%;top:34%;color:#2e2e2e;letter-spacing:.3px}
 
-.list-card{background:#fff;border-radius:14px;margin-top:14px;overflow:hidden}
-.doc-row{display:flex;gap:14px;align-items:center;padding:14px;}
-.doc-row:active{background:#f6f7fa}
-.doc-row .mini{width:76px;flex:none}
-.doc-row .mini .idcard{border-radius:7px;box-shadow:0 2px 8px rgba(30,50,90,.12)}
-.doc-row .t{font-weight:600;font-size:15px}
-.doc-row .s{font-size:12px;color:var(--muted);margin-top:3px}
-.soon{border:1.5px dashed #cdd3de;border-radius:14px;padding:16px;margin-top:14px;color:var(--muted);font-size:13px;text-align:center}
+.doklady-h{font-size:22px;font-weight:500;color:#3a3a3a;padding:calc(var(--st) + 20px) 20px 0;margin:0}
+.wallet{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 16px 22px}
+.wallet .idc .lab{font-size:15.5px}.wallet .idc .num{font-size:15.5px}
+.wallet button.cardb{display:block;width:100%;transition:transform .15s}
+.wallet button.cardb:active{transform:scale(.985)}
+.kde{display:block;margin:26px auto 0;color:var(--blue);font-weight:700;font-size:14px}
 
-.photo{width:112px;aspect-ratio:.78;margin:14px auto 6px;border-radius:10px;overflow:hidden;position:relative;box-shadow:0 2px 10px rgba(0,0,0,.08)}
-.photo .ex{position:absolute;right:5px;bottom:5px;width:24px;height:24px;border-radius:6px;background:rgba(255,255,255,.85);display:grid;place-items:center}
+.detail-card{width:58%;margin:6px auto 0}
+.detail-card .idc .lab{font-size:12.5px}.detail-card .idc .num{font-size:12.5px}
+.pill{display:flex;align-items:center;gap:8px;width:max-content;max-width:100%;margin:16px auto 0;padding:4px 14px 4px 10px;border:1px solid #c5ddbd;background:#eef6eb;border-radius:20px;font-size:12.5px;color:#2f5a25;letter-spacing:.1px}
+.pill svg{width:16px;height:16px;color:#2d6a1f;flex:none}
+.photo{display:block;width:96px;height:117px;margin:30px auto 0;border-radius:14px;overflow:hidden;position:relative;background:#eee}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
+.photo .ex{position:absolute;right:5px;bottom:5px;width:22px;height:22px;border-radius:5px;background:rgba(255,255,255,.8);display:grid;place-items:center}
 .photo .ex svg{width:14px;height:14px;color:#333}
-.fields{background:#fff;border-radius:14px;margin-top:14px;padding:2px 0}
-.f{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 16px;border-bottom:1px solid var(--line);font-size:15px}
-.f:last-child{border-bottom:0}
-.f .k{color:var(--muted);flex:none}
-.f .v{font-weight:500;text-align:right;display:flex;align-items:center;gap:8px}
-.f.col{flex-direction:column;align-items:flex-start;gap:4px}
+.fields{background:var(--card);border-radius:18px;margin-top:16px;padding:6px 0;box-shadow:0 0 0 1px rgba(0,0,0,.015)}
+.f{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:0 18px;min-height:58px;font-size:16px}
+.f .k{color:#727272;flex:none}
+.f .v{color:#333;text-align:right;display:flex;align-items:center;gap:12px}
+.f.col{flex-direction:column;align-items:flex-start;justify-content:center;gap:5px;padding-top:12px;padding-bottom:12px}
+.f.col .k{font-size:13px}
 .f.col .v{text-align:left}
-.f.small .k{font-size:13px}
-.cp{width:28px;height:28px;display:grid;place-items:center;border-radius:6px;color:#8a92a2}
-.cp:active{background:#eef1f6}
-.cp svg{width:16px;height:16px}
-.sig{height:34px}
+.cp{width:24px;height:24px;display:grid;place-items:center;color:var(--blue);margin-right:-2px}
+.cp svg{width:22px;height:22px}
+.sig{height:34px;width:110px}
 
 /* QR */
-.qrwrap{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 22px}
-.qr{width:min(84vw,340px);aspect-ratio:1;position:relative}
+.qrbox{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 18px}
+.qr{width:min(88vw,360px);aspect-ratio:1;position:relative;margin-top:auto}
 .qr svg.code{width:100%;height:100%;display:block}
-.qr .emb{position:absolute;left:50%;top:50%;width:24%;height:24%;transform:translate(-50%,-50%);border-radius:14%;overflow:hidden;box-shadow:0 0 0 6px #fff}
-.qr .emb svg{width:100%;height:100%;display:block}
-.hint{color:var(--muted);font-size:14px;text-align:center;margin:18px 0 12px}
-.bt{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted);justify-content:center}
-.bt svg{width:14px;height:14px;color:var(--blue)}
-.foot{flex:none;padding:10px 16px calc(var(--sb) + 14px);background:var(--bg)}
-.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;border-radius:10px;font-weight:600;font-size:16px}
-.btn.pri{background:var(--blue);color:#fff}
-.btn.pri:active{background:var(--blue-d)}
-.btn.out{border:1.5px solid var(--blue);color:var(--blue);background:#fff}
+.qr .emb{position:absolute;left:50%;top:50%;width:22%;height:22%;transform:translate(-50%,-50%);border-radius:12%;overflow:hidden}
+.qr .emb img{width:100%;height:100%;display:block}
+.hint{color:#6b6b6b;font-size:13.5px;text-align:center;margin:auto 0 12px}
+.foot{flex:none;padding:6px 16px calc(var(--sb) + 14px)}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;height:46px;border-radius:6px;font-weight:500;font-size:15.5px;letter-spacing:.2px}
+.btn.pri{background:#2a5aa8;color:#fff}
+.btn.pri:active{background:#204b8f}
+.btn.out{border:1px solid #2a5aa8;color:#2a5aa8;background:transparent}
 .btn.out:active{background:var(--blue-l)}
-.btn.txt{color:var(--blue)}
+.btn.txt{color:#2a5aa8}
 .btn svg{width:20px;height:20px}
-.btn + .btn{margin-top:8px}
+.btn + .btn{margin-top:10px}
 
-/* consent */
-.blk{background:#fff;border-radius:14px;padding:14px 16px;margin-top:12px}
-.blk .lbl{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-bottom:6px}
-.blk .lbl svg{width:14px;height:14px;color:var(--blue)}
-.blk .val{font-size:15px;font-weight:500}
-.blk ul{margin:4px 0 0;padding-left:18px;font-size:15px;line-height:1.75}
-.blk ul li::marker{color:#9aa2b1}
-.blk + .blk{margin-top:10px}
-.note{font-size:12px;color:var(--muted);margin:14px 4px 0;line-height:1.45}
+/* souhlas */
+.cons{padding:0 22px}
+.cons .lbl{font-size:12.5px;color:#777;margin:22px 0 6px}
+.cons .val{font-size:15px;color:#333}
+.cons ul{list-style:none;margin:0;padding:0;font-size:15px;color:#333;line-height:1.62;position:relative}
+.cons .ii{position:absolute;right:-4px;top:50%;transform:translateY(-50%);width:30px;height:30px;display:grid;place-items:center;color:#8a8a8a}
+.cons .ii svg{width:18px;height:18px}
 
-/* camera */
+/* kamera */
 .cam{background:#000;color:#fff}
-.cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.cam .hdr{background:transparent;position:relative;z-index:2}
+.cam video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}
+.cam .hdr{position:relative;z-index:2}
 .cam .hdr h1,.cam .ib{color:#fff}
-.cam .frame{position:absolute;left:50%;top:46%;width:70vw;max-width:300px;aspect-ratio:1;transform:translate(-50%,-50%);z-index:2}
-.cam .frame i{position:absolute;width:34px;height:34px;border:4px solid #fff}
-.cam .frame i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0;border-radius:8px 0 0 0}
-.cam .frame i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0;border-radius:0 8px 0 0}
-.cam .frame i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0;border-radius:0 0 0 8px}
-.cam .frame i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0;border-radius:0 0 8px 0}
-.cam .scan{position:absolute;left:6%;right:6%;height:2px;background:linear-gradient(90deg,transparent,#7fb0ff,transparent);animation:sc 1.8s ease-in-out infinite;top:10%}
-@keyframes sc{50%{top:88%}}
-.cam .ct{position:absolute;left:0;right:0;bottom:calc(var(--sb) + 70px);text-align:center;font-weight:600;font-size:15px;padding:0 40px;z-index:2;text-shadow:0 1px 4px rgba(0,0,0,.5)}
-.found .frame i{border-color:#5fd38d;transition:border-color .2s}
+.cam .h2{color:#fff;position:relative;z-index:2;margin-top:8px}
+.cam .frame{position:absolute;left:4%;right:4%;top:26%;height:42%;z-index:2}
+.cam .frame i{position:absolute;width:30px;height:30px;border:3px solid #fff}
+.cam .frame i:nth-child(1){left:0;top:0;border-right:0;border-bottom:0}
+.cam .frame i:nth-child(2){right:0;top:0;border-left:0;border-bottom:0}
+.cam .frame i:nth-child(3){left:0;bottom:0;border-right:0;border-top:0}
+.cam .frame i:nth-child(4){right:0;bottom:0;border-left:0;border-top:0}
+.cam .ct{position:absolute;left:0;right:0;bottom:calc(var(--sb) + 64px);text-align:center;font-weight:500;font-size:14.5px;padding:0 44px;z-index:2;line-height:1.4}
+.found .frame i{border-color:#7ed08f;transition:border-color .2s}
 
-/* result */
+/* výsledek */
 .done{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 30px;text-align:center}
-.circle{width:92px;height:92px;border-radius:50%;display:grid;place-items:center;background:#e6f5ec;color:var(--green);margin-bottom:22px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
-.circle.no{background:#fbe9e7;color:var(--red)}
-.circle svg{width:46px;height:46px}
-@keyframes pop{from{transform:scale(.4);opacity:0}to{transform:none;opacity:1}}
-.done h2{font-size:22px;margin:0 0 8px;font-weight:600}
+.circle{width:88px;height:88px;border-radius:50%;display:grid;place-items:center;background:#e8f3e5;color:#2d6a1f;margin-bottom:22px;animation:pop .45s cubic-bezier(.2,1.4,.4,1)}
+.circle.no{background:#fbe8ea;color:var(--red)}
+.circle svg{width:44px;height:44px}
+@keyframes pop{from{transform:scale(.5);opacity:0}to{transform:none;opacity:1}}
+.done h2{font-size:21px;margin:0 0 10px;font-weight:500}
 .done p{color:var(--muted);margin:0;font-size:15px;line-height:1.5}
-.spin{width:40px;height:40px;border-radius:50%;border:3.5px solid #d5ddeb;border-top-color:var(--blue);animation:rot .8s linear infinite;margin-bottom:22px}
+.spin{width:38px;height:38px;border-radius:50%;border:3.5px solid #d9e1ee;border-top-color:var(--blue);animation:rot .8s linear infinite;margin-bottom:22px}
 @keyframes rot{to{transform:rotate(360deg)}}
 
-/* profile */
-.prof{display:flex;align-items:center;gap:14px;background:#fff;border-radius:14px;padding:16px;margin-top:6px}
-.av{width:52px;height:52px;border-radius:50%;background:var(--blue-l);color:var(--blue);display:grid;place-items:center;font-weight:700;font-size:18px}
-.menu{background:#fff;border-radius:14px;margin-top:14px;overflow:hidden}
-.menu button{width:100%;display:flex;align-items:center;gap:14px;padding:15px 16px;border-bottom:1px solid var(--line);text-align:left;font-size:15px}
-.menu button:last-child{border-bottom:0}
-.menu button:active{background:#f6f7fa}
-.menu svg{width:22px;height:22px;color:#4a5263;flex:none}
-.menu .chev{margin-left:auto;width:18px;height:18px;color:#a3aab7}
-.menu .red{color:var(--red)}
-.hist{background:#fff;border-radius:14px;padding:14px 16px;margin-top:10px}
-.hist .r1{display:flex;justify-content:space-between;font-size:12px;color:var(--muted)}
-.hist .r2{font-weight:600;margin:6px 0 2px}
-.hist .r3{font-size:13px;color:var(--muted)}
-.tag{font-size:11px;font-weight:700;padding:2px 8px;border-radius:10px}
-.tag.y{background:#e6f5ec;color:#1d7444}.tag.n{background:#fbe9e7;color:#a8302a}
-.empty{text-align:center;color:var(--muted);padding:40px 20px;font-size:14px}
-.ver{text-align:center;color:#9aa1ad;font-size:12px;margin-top:22px;line-height:1.6}
+/* profil */
+.prof-h{font-size:22px;font-weight:500;color:#3a3a3a;padding:calc(var(--st) + 20px) 20px 8px;margin:0}
+.prof{display:flex;align-items:center;gap:14px;background:var(--card);border-radius:18px;padding:18px;margin-top:8px}
+.av{width:48px;height:48px;border-radius:50%;background:var(--blue-l);color:var(--blue);display:grid;place-items:center}
+.av svg{width:26px;height:26px}
+.menu{background:var(--card);border-radius:18px;margin-top:14px;overflow:hidden;padding:4px 0}
+.menu button{width:100%;display:flex;align-items:center;gap:16px;padding:0 18px;min-height:56px;text-align:left;font-size:16px;color:#333}
+.menu button:active{background:#f2f2f2}
+.menu svg{width:22px;height:22px;color:#555;flex:none}
+.menu .chev{margin-left:auto;width:20px;height:20px;color:#9a9a9a}
+.menu .red,.menu .red svg{color:var(--red)}
+.hist{background:var(--card);border-radius:16px;padding:14px 18px;margin-top:10px}
+.hist .r1{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:#7a7a7a}
+.hist .r2{font-weight:500;margin:7px 0 3px;font-size:15.5px}
+.hist .r3{font-size:13.5px;color:#777}
+.tag{font-size:11.5px;font-weight:500;padding:2px 9px;border-radius:10px}
+.tag.y{background:#eef6eb;color:#2f5a25;border:1px solid #c5ddbd}.tag.n{background:#fbe8ea;color:#a3202d;border:1px solid #f0c3c8}
+.empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:15px}
+.ver{text-align:center;color:#9a9a9a;font-size:12px;margin-top:24px}
 
-/* photo modal + toast */
-.modal{position:absolute;inset:0;background:rgba(0,0,0,.88);z-index:30;display:grid;place-items:center;animation:fd .2s}
-.modal .big{width:72%;max-width:320px;aspect-ratio:.78;border-radius:12px;overflow:hidden}
-.toast{position:absolute;left:50%;bottom:calc(var(--sb) + 100px);transform:translateX(-50%);background:#2b2f38;color:#fff;font-size:14px;padding:10px 16px;border-radius:22px;z-index:40;animation:fd .2s;white-space:nowrap}
+/* modal, toast, sheet */
+.modal{position:absolute;inset:0;background:rgba(0,0,0,.9);z-index:30;display:grid;place-items:center;animation:fd .2s}
+.modal img{width:78%;max-width:340px;border-radius:12px}
+.toast{position:absolute;left:50%;bottom:calc(var(--sb) + 110px);transform:translateX(-50%);background:#323232;color:#fff;font-size:14px;padding:11px 18px;border-radius:24px;z-index:40;animation:fd .2s;white-space:nowrap}
 .sheet-bg{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:30;animation:fd .2s}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;padding:10px 16px calc(var(--sb) + 16px);z-index:31;animation:up .25s ease}
+.sheet{position:absolute;left:0;right:0;bottom:0;background:#fff;border-radius:18px 18px 0 0;padding:10px 20px calc(var(--sb) + 16px);z-index:31;animation:up .25s ease}
 @keyframes up{from{transform:translateY(100%)}to{transform:none}}
-.sheet .grab{width:38px;height:5px;border-radius:3px;background:#d6dae2;margin:0 auto 14px}
-.sheet h3{margin:0 0 6px;font-size:18px}
-.sheet p{margin:0 0 16px;color:var(--muted);font-size:14px;line-height:1.5}
+.sheet .grab{width:38px;height:4px;border-radius:3px;background:#d6d6d6;margin:0 auto 16px}
+.sheet h3{margin:0 0 8px;font-size:18px;font-weight:500}
+.sheet p{margin:0 0 18px;color:#666;font-size:14.5px;line-height:1.5}
 </style>
 </head>
 <body>
 <div id="app"></div>
 
 <script>
-/* ============ Výuková ukázka – smyšlená osoba, žádná skutečná data ============ */
+/* Výuková ukázka – smyšlená osoba, AI fotka neexistujícího člověka. Rodné číslo záměrně nesplňuje kontrolu dělitelnosti 11. */
 const OSOBA = {
-  prijmeni:'VZOROVÝ', jmeno:'JAN', cislo:'000000000', rc:'000101/0000',
-  narozeni:'01. 01. 2000', misto:'PRAHA 1', pobyt:'VZOROVÁ 123/4, PRAHA 1 – NOVÉ MĚSTO, 110 00',
-  pohlavi:'Muž', obcanstvi:'ČESKÁ REPUBLIKA', vydani:'01. 06. 2024', platnost:'01. 06. 2034',
-  vydal:'MAGISTRÁT HL. M. PRAHY', zmena:'Není evidována žádná změna'
+  prijmeni:'Kolář', jmeno:'Tomáš', cislo:'207451938', rc:'000314/5127',
+  narozeni:'14.03.2000', misto:'Praha 4', pobyt:'Na Pankráci 1683/127, Praha 4 – Nusle, 140&nbsp;00',
+  pohlavi:'Muž', obcanstvi:'Česká republika', vydani:'02.06.2021', platnost:'02.06.2031',
+  vydal:'Magistrát hl. m. Prahy', zmena:'Není evidována žádná změna'
 };
-const LABEL = { foto:'Fotografie', prijmeni:'Příjmení', jmeno:'Jméno (příp. jména)', pobyt:'Trvalý pobyt', rc:'Rodné číslo',
+const LABEL = { foto:'Fotografie', prijmeni:'Příjmení', jmeno:'Jméno', pobyt:'Trvalý pobyt', rc:'Rodné číslo',
   narozeni:'Datum narození', misto:'Místo narození', obcanstvi:'Státní občanství', pohlavi:'Pohlaví', podpis:'Podpis držitele',
-  cislo:'Číslo občanského průkazu', vydani:'Datum vydání', platnost:'Platnost do', vydal:'Vydal', zmena:'Změna údajů',
-  vek18:'Věk nad 18 let', mrz:'Strojově čitelná zóna dokladu' };
-/* scénáře – při každém „Prokázat se“ se střídají */
+  cislo:'Číslo dokladu', vydani:'Datum vydání', platnost:'Platnost do', vydal:'Vydal', zmena:'Změna údajů', vek18:'Věk nad 18 let' };
+const VSE = ['foto','prijmeni','jmeno','pobyt','rc','narozeni','misto','obcanstvi','pohlavi','podpis','cislo','vydani','platnost','vydal'];
 const SCENARE = [
-  { subjekt:'Úřad městské části Praha – Vzorov', sada:'Ověření totožnosti', kontrola:['foto'], zprac:['cislo','prijmeni','jmeno','rc'] },
-  { subjekt:'Prodejna Vzorová s.r.o.', sada:'Kontrola věku - 18 let', kontrola:['foto','vek18'], zprac:[] },
-  { subjekt:'Ukázková pobočka banky', sada:'Kontrola dokladu', kontrola:['foto'], zprac:['prijmeni','jmeno','pobyt','rc','narozeni','misto','obcanstvi','pohlavi','podpis','cislo','vydani','platnost','vydal','zmena'] },
+  { subjekt:'Úřad městské části Praha 4', sada:'Ověření totožnosti', kontrola:['foto','prijmeni','jmeno','narozeni'], zprac:[] },
+  { subjekt:'Česká pošta, s.p.', sada:'Kontrola dokladu', kontrola:VSE, zprac:[] },
+  { subjekt:'Tabák & tisk U Nádraží', sada:'Kontrola věku – 18 let', kontrola:['foto','vek18'], zprac:[] },
 ];
-const PREPAZKA = { subjekt:'Gymnázium Vzorová – studijní oddělení', sada:'Ověření totožnosti', kontrola:['foto'], zprac:['cislo','prijmeni','jmeno','narozeni'] };
+const PREPAZKA = { subjekt:'Gymnázium, Praha 4, Na Pankráci', sada:'Ověření totožnosti', kontrola:['foto','prijmeni','jmeno','narozeni','pobyt'], zprac:[] };
 
 /* ---------- ikony ---------- */
 const I = {
-  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>',
-  close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>',
-  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
-  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="4"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6" stroke-linecap="round"/></svg>',
-  userscan:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="10" cy="8" r="4"/><path d="M3 20c1.3-3.6 3.9-5.5 7-5.5 1 0 1.9.2 2.8.5"/><circle cx="17" cy="17" r="3"/><path d="M19.2 19.2L21 21"/></svg>',
-  docs:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2.5"/><circle cx="8.5" cy="11" r="2"/><path d="M5.5 16c.6-1.4 1.7-2.1 3-2.1s2.4.7 3 2.1M14 10h4M14 13h3" stroke-linecap="round"/></svg>',
-  prokaz:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="6" y="2.5" width="12" height="19" rx="2.5"/><circle cx="12" cy="10" r="2.3"/><path d="M8.8 15.5c.6-1.3 1.8-2 3.2-2s2.6.7 3.2 2" stroke-linecap="round"/></svg>',
-  prof:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4.5 20.5c1.4-3.8 4.2-5.8 7.5-5.8s6.1 2 7.5 5.8" stroke-linecap="round"/></svg>',
-  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>',
+  back:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 4l-8 8 8 8"/></svg>',
+  close:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M5.5 5.5l13 13M18.5 5.5l-13 13"/></svg>',
+  minus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><circle cx="12" cy="12" r="9.5"/><path d="M7.5 12h9"/></svg>',
+  chev:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>',
+  user:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 20.5c1.4-4 4.4-6 8-6s6.6 2 8 6" stroke-linecap="round"/></svg>',
+  docs:'<svg viewBox="0 0 32 32" fill="currentColor"><path fill-rule="evenodd" d="M6 6.5h20a3 3 0 013 3v13a3 3 0 01-3 3H6a3 3 0 01-3-3v-13a3 3 0 013-3zm5.5 4.2a2.9 2.9 0 100 5.8 2.9 2.9 0 000-5.8zM6.8 22.3h9.4c-.4-2.7-2.3-4.4-4.7-4.4s-4.3 1.7-4.7 4.4zM18.5 11h7v1.8h-7zm0 4h7v1.8h-7zm0 4h5v1.8h-5z"/></svg>',
+  docsO:'<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.8" y="7.3" width="24.4" height="17.4" rx="2.6"/><circle cx="11.5" cy="13.6" r="2.6"/><path d="M7.4 21.5c.6-2.3 2.2-3.6 4.1-3.6s3.5 1.3 4.1 3.6M18.5 11.9h6.5M18.5 15.9h6.5M18.5 19.9h4.5" stroke-linecap="round"/></svg>',
+  prokaz:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5.5" y="2" width="13" height="20" rx="2.4"/><circle cx="12" cy="10" r="2.6" fill="currentColor" stroke="none"/><path d="M8.3 16.6c.6-1.6 2-2.5 3.7-2.5s3.1.9 3.7 2.5z" fill="currentColor" stroke="none"/></svg>',
+  prof:'<svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="16" cy="10.5" r="5"/><path d="M5.5 27c1-5.4 5-8.4 10.5-8.4s9.5 3 10.5 8.4z" stroke-linejoin="round"/></svg>',
+  profF:'<svg viewBox="0 0 32 32" fill="currentColor"><circle cx="16" cy="10.5" r="5.5"/><path d="M5 27.5c1-5.7 5.2-9 11-9s10 3.3 11 9z"/></svg>',
+  check:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5L20 6.5"/></svg>',
   x:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M7 7l10 10M17 7L7 17"/></svg>',
-  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="8" y="8" width="12" height="12" rx="2"/><path d="M16 8V6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2h2"/></svg>',
+  copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><rect x="8.5" y="3.5" width="12" height="13" rx="2.2"/><path d="M15.5 16.5v2a2 2 0 01-2 2h-8a2 2 0 01-2-2V9.5a2 2 0 012-2h3"/></svg>',
   expand:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5"/></svg>',
-  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 8h3l1.5-2.5h7L17 8h3a1 1 0 011 1v9a1 1 0 01-1 1H4a1 1 0 01-1-1V9a1 1 0 011-1z"/><circle cx="12" cy="13" r="3.5"/></svg>',
-  bt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 7l10 10-5 4V3l5 4L7 17"/></svg>',
-  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5" stroke-linecap="round"/></svg>',
-  hist:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3.5 12a8.5 8.5 0 102.5-6"/><path d="M3 4v4h4M12 7.5V12l3 2"/></svg>',
-  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></svg>',
-  gear:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 00.3 1.8l.1.1a2 2 0 11-2.8 2.8l-.1-.1a1.7 1.7 0 00-1.8-.3 1.7 1.7 0 00-1 1.5V21a2 2 0 11-4 0v-.1a1.7 1.7 0 00-1.1-1.5 1.7 1.7 0 00-1.8.3l-.1.1a2 2 0 11-2.8-2.8l.1-.1a1.7 1.7 0 00.3-1.8 1.7 1.7 0 00-1.5-1H3a2 2 0 110-4h.1a1.7 1.7 0 001.5-1.1 1.7 1.7 0 00-.3-1.8l-.1-.1a2 2 0 112.8-2.8l.1.1a1.7 1.7 0 001.8.3H9a1.7 1.7 0 001-1.5V3a2 2 0 114 0v.1a1.7 1.7 0 001 1.5 1.7 1.7 0 001.8-.3l.1-.1a2 2 0 112.8 2.8l-.1.1a1.7 1.7 0 00-.3 1.8V9a1.7 1.7 0 001.5 1H21a2 2 0 110 4h-.1a1.7 1.7 0 00-1.5 1z"/></svg>',
-  help:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17v.3"/></svg>',
-  out:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 8l-4 4 4 4M6 12h10"/></svg>',
-  faceid:'<svg viewBox="0 0 64 64" fill="none" stroke="#1a73e8" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V12a6 6 0 016-6h8M44 6h8a6 6 0 016 6v8M58 44v8a6 6 0 01-6 6h-8M20 58h-8a6 6 0 01-6-6v-8"/><path d="M22 24v4M42 24v4M32 24v12h-3M24 44c4.5 4 11.5 4 16 0"/></svg>',
-  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6z"/><path d="M9 12l2 2 4-4" stroke-linecap="round"/></svg>',
+  camera:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M4 7.5h3l1.6-2.5h6.8L17 7.5h3a1.5 1.5 0 011.5 1.5v9a1.5 1.5 0 01-1.5 1.5H4A1.5 1.5 0 012.5 18V9A1.5 1.5 0 014 7.5z"/><circle cx="12" cy="13" r="3.6"/></svg>',
+  info:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9.5"/><path d="M12 11v6M12 7.6v.2" stroke-linecap="round" stroke-width="1.8"/></svg>',
+  hist:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M3.5 12a8.5 8.5 0 102.5-6"/><path d="M3 4v4h4M12 7.5V12l3 2"/></svg>',
+  lock:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="5" y="10.5" width="14" height="10" rx="2"/><path d="M8 10.5V8a4 4 0 018 0v2.5"/></svg>',
+  bell:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15zM10 20.5a2 2 0 004 0"/></svg>',
+  globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.6 5.7 3.6 9s-1.1 6.3-3.6 9c-2.5-2.7-3.6-5.7-3.6-9S9.5 5.7 12 3z"/></svg>',
+  help:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17v.3"/></svg>',
+  out:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 8l-4 4 4 4M6 12h10"/></svg>',
+  faceid:'<svg viewBox="0 0 64 64" fill="none" stroke="#1c1c1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V12a6 6 0 016-6h8M44 6h8a6 6 0 016 6v8M58 44v8a6 6 0 01-6 6h-8M20 58h-8a6 6 0 01-6-6v-8"/><path d="M22 24v4M42 24v4M32 24v12h-3M24 44c4.5 4 11.5 4 16 0"/></svg>',
+  faceok:'<svg viewBox="0 0 64 64" fill="none" stroke="#1c1c1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="25"/><path d="M21 33l8 8 14-16"/></svg>',
 };
-/* znak aplikace – vlastní abstraktní symbol (ne státní znak) */
-const EMBLEM = `<svg viewBox="0 0 100 100"><defs><linearGradient id="eg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f3d9ec"/><stop offset=".55" stop-color="#dfe4fb"/><stop offset="1" stop-color="#d2ecf3"/></linearGradient></defs>
-<rect width="100" height="100" fill="url(#eg)"/>
-<path d="M50 17 L76 27 V50 C76 67 65 78 50 84 C35 78 24 67 24 50 V27 Z" fill="#2459b8"/>
-<path d="M50 27 L68 34 V50 C68 62 61 70 50 75 C39 70 32 62 32 50 V34 Z" fill="none" stroke="#fff" stroke-width="3" opacity=".9"/>
-<path d="M41 51 l7 7 13-14" fill="none" stroke="#fff" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-const FOTO = `<svg viewBox="0 0 78 100" preserveAspectRatio="xMidYMid slice"><defs><linearGradient id="fg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e9edf3"/><stop offset="1" stop-color="#d5dbe4"/></linearGradient></defs>
-<rect width="78" height="100" fill="url(#fg)"/><ellipse cx="39" cy="40" rx="15" ry="18" fill="#a9b2bf"/><path d="M8 100c2-20 15-31 31-31s29 11 31 31z" fill="#a9b2bf"/>
-<text x="39" y="94" text-anchor="middle" font-size="9" font-weight="700" fill="#c8372d" opacity=".75" font-family="Helvetica,Arial" letter-spacing="1.5">VZOR</text></svg>`;
-const PODPIS = `<svg class="sig" viewBox="0 0 120 34" fill="none" stroke="#1d2b5a" stroke-width="1.6" stroke-linecap="round"><path d="M6 24c6-16 10-18 11-10s-2 12 2 8 6-12 8-8-1 10 3 8 5-8 9-7 1 7 5 6 6-6 10-5 2 5 6 4 8-7 12-6 4 4 8 3 10-4 14-3"/></svg>`;
 
-/* ---------- pseudo QR (náhodný vzor s rohovými značkami; nic neobsahuje) ---------- */
+/* digitální doklad – vlnovka, růžové pruhy */
+let CARDSVG=null;
+function cardSvg(){
+  if(CARDSVG) return CARDSVG;
+  let w=''; for(let i=0;i<46;i++){ const y=(i*3.2-8).toFixed(1); w+=`<path d="M-10 ${y} C 40 ${y-9}, 70 ${+y+11}, 120 ${y} S 200 ${y-10}, 260 ${+y+2}"/>`; }
+  let c=''; for(let i=1;i<16;i++){ c+=`<ellipse cx="150" cy="70" rx="${i*7}" ry="${(i*4.2).toFixed(1)}"/>`; }
+  return CARDSVG=`<svg class="bgsvg" viewBox="0 0 240 148" preserveAspectRatio="none">
+  <defs>
+   <linearGradient id="cb" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#cfe5fb"/><stop offset=".5" stop-color="#e4f0fd"/><stop offset="1" stop-color="#d3e6fa"/></linearGradient>
+   <linearGradient id="cp" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f3a9c7"/><stop offset=".45" stop-color="#f6c3d8"/><stop offset=".75" stop-color="#ecd9f0"/><stop offset="1" stop-color="#dfe7fa"/></linearGradient>
+   <linearGradient id="cp2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#f7d1e0" stop-opacity="0"/><stop offset=".35" stop-color="#f6c4d8"/><stop offset="1" stop-color="#f2b2cc"/></linearGradient>
+   <radialGradient id="cg" cx=".62" cy=".5" r=".5"><stop offset="0" stop-color="#fff" stop-opacity=".85"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="240" height="148" fill="url(#cb)"/>
+  <path d="M0 0H240V30C190 26 150 34 110 30S30 26 0 30Z" fill="url(#cp)"/>
+  <path d="M70 148 L95 112 H240 V148Z" fill="url(#cp2)" opacity=".9"/>
+  <path d="M0 95 C 40 70, 70 125, 100 148 H0Z" fill="#c3dcf6" opacity=".55"/>
+  <rect width="240" height="148" fill="url(#cg)"/>
+  <g fill="none" stroke="#9cc3ec" stroke-width=".45" opacity=".75">${w}</g>
+  <g fill="none" stroke="#ffffff" stroke-width=".6" opacity=".55">${c}</g>
+  <g transform="translate(188 64)" opacity=".55">
+    <rect width="26" height="28" rx="2" fill="#bcd7f3"/>
+    <rect x="1.5" y="1.5" width="11" height="12" fill="#e9f2fc"/><rect x="13.5" y="14.5" width="11" height="12" fill="#e9f2fc"/>
+    <rect x="13.5" y="1.5" width="11" height="12" fill="#a9c9ee"/><rect x="1.5" y="14.5" width="11" height="12" fill="#a9c9ee"/>
+    <path d="M4 10c2-4 4-6 6-4M16 22c2-4 4-6 6-4" stroke="#fff" stroke-width="1" fill="none"/>
+  </g></svg>`;
+}
+function card(){ return `<div class="idc">${cardSvg()}<span class="lab">Občanský průkaz</span><span class="num">${OSOBA.cislo}</span></div>`; }
+const EMBLEM = `<img src="icon-512.png?v=2" alt="">`;
+const PODPIS = `<svg class="sig" viewBox="0 0 120 34" fill="none" stroke="#1e2a55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 25c3-9 7-17 10-17s-1 13-3 16c4-7 8-11 10-9s-2 8 1 8 5-7 8-7-1 6 2 6 4-5 7-5 0 4 3 4c6 0 10-6 14-6s3 4 7 4c5 0 9-3 14-3s7 2 12 1"/><path d="M30 12c10-2 22-3 34-2"/></svg>`;
+
+/* QR vzor (náhodný, nic nenese) */
 function qrSvg(seed){
-  const N=37; let s=seed>>>0||1; const rnd=()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return (s>>>0)/4294967296};
-  let r='';
-  const finder=(x,y)=>`<rect x="${x}" y="${y}" width="7" height="7" rx="1.6" fill="#1d4fae"/><rect x="${x+1}" y="${y+1}" width="5" height="5" rx="1.1" fill="#fff"/><rect x="${x+2}" y="${y+2}" width="3" height="3" rx=".8" fill="#1d4fae"/>`;
+  const N=41; let s=(seed>>>0)||1; const rnd=()=>{s^=s<<13;s^=s>>>17;s^=s<<5;return (s>>>0)/4294967296};
+  const col='#2c5cae'; let r='';
+  const finder=(x,y)=>`<rect x="${x+.5}" y="${y+.5}" width="6" height="6" rx="1.4" fill="none" stroke="${col}" stroke-width="1"/><rect x="${x+2}" y="${y+2}" width="3" height="3" rx=".7" fill="${col}"/>`;
   const inF=(x,y)=>(x<8&&y<8)||(x>N-9&&y<8)||(x<8&&y>N-9);
   const c0=Math.floor(N/2)-5, c1=Math.floor(N/2)+5;
   for(let y=0;y<N;y++)for(let x=0;x<N;x++){
-    if(inF(x,y))continue; if(x>=c0&&x<=c1&&y>=c0&&y<=c1)continue;
-    if(rnd()<.5) r+=`<rect x="${x+.06}" y="${y+.06}" width=".88" height=".88" rx=".22" fill="#1d4fae"/>`;
+    if(inF(x,y)||(x>=c0&&x<=c1&&y>=c0&&y<=c1))continue;
+    if(rnd()<.5) r+=`<rect x="${x}" y="${y}" width="1.02" height="1.02" fill="${col}"/>`;
   }
-  return `<svg class="code" viewBox="-1 -1 ${N+2} ${N+2}" shape-rendering="geometricPrecision"><rect x="-1" y="-1" width="${N+2}" height="${N+2}" fill="#fff"/>${finder(0,0)}${finder(N-7,0)}${finder(0,N-7)}${r}</svg>`;
+  return `<svg class="code" viewBox="-2 -2 ${N+4} ${N+4}" shape-rendering="crispEdges"><rect x="-2" y="-2" width="${N+4}" height="${N+4}" fill="#fff"/><g shape-rendering="geometricPrecision">${finder(0,0)}${finder(N-7,0)}${finder(0,N-7)}</g>${r}</svg>`;
 }
 
 /* ---------- stav ---------- */
@@ -309,171 +306,127 @@ const store = {
   get(k,d){ try{ const v=localStorage.getItem('edd_'+k); return v==null?d:JSON.parse(v);}catch(e){return d;} },
   set(k,v){ try{ localStorage.setItem('edd_'+k,JSON.stringify(v)); }catch(e){} }
 };
-const S = { screen:'splash', tab:'doklady', pin:'', scen:null, via:null, history:store.get('hist',[]), scIdx:store.get('sc',0),
-  updated: new Date() };
+const S = { screen:'splash', scen:null, history:store.get('hist',[]), scIdx:store.get('sc',0), updated:new Date() };
 let timers=[], stream=null;
 const app=document.getElementById('app');
-const pad2=n=>String(n).padStart(2,'0');
-const fmtUpd=d=>`${d.getDate()}.${d.getMonth()+1}. ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
-const fmtFull=d=>`${pad2(d.getDate())}. ${pad2(d.getMonth()+1)}. ${d.getFullYear()} ${pad2(d.getHours())}:${pad2(d.getMinutes())}`;
-
+const p2=n=>String(n).padStart(2,'0');
+const fmtUpd=d=>`${p2(d.getDate())}.${p2(d.getMonth()+1)}. ${p2(d.getHours())}:${p2(d.getMinutes())}`;
+const fmtFull=d=>`${p2(d.getDate())}.${p2(d.getMonth()+1)}.${d.getFullYear()} ${p2(d.getHours())}:${p2(d.getMinutes())}`;
 function later(fn,ms){ timers.push(setTimeout(fn,ms)); }
 function stopCam(){ if(stream){ stream.getTracks().forEach(t=>t.stop()); stream=null; } }
-function go(screen,opt={}){
-  timers.forEach(clearTimeout); timers=[]; stopCam();
-  S.screen=screen; Object.assign(S,opt); render(opt.back);
-}
+function go(screen,opt={}){ timers.forEach(clearTimeout); timers=[]; stopCam(); S.screen=screen; Object.assign(S,opt); render(opt.back); }
 function toast(t){ const el=document.createElement('div'); el.className='toast'; el.textContent=t; app.appendChild(el); setTimeout(()=>el.remove(),1800); }
-function vib(){ try{ navigator.vibrate && navigator.vibrate(30);}catch(e){} }
+function vib(){ try{ navigator.vibrate && navigator.vibrate(25);}catch(e){} }
 
-/* ---------- obrazovky ---------- */
-const hdr=(title,left='',right='',cls='')=>`<div class="hdr ${cls}">${left?`<button class="ib" data-a="${left}">${left==='close'?I.close:I.back}</button>`:'<span></span>'}<h1>${title}</h1>${right?`<button class="ib" data-a="${right}">${right==='close'?I.close:I.info}</button>`:'<span></span>'}</div>`;
-
-function card(mini=false){
-  return `<div class="idcard">${mini?'':`<span class="lab">Občanský průkaz</span><span class="num">${OSOBA.cislo}</span>`}
-   <svg class="wave" viewBox="0 0 200 120" fill="none" stroke="#fff" stroke-width="1.2" opacity=".9">${Array.from({length:9},(_,i)=>`<path d="M0 ${20+i*9}C40 ${0+i*9} 80 ${50+i*9} 120 ${25+i*9}S180 ${10+i*9} 200 ${30+i*9}"/>`).join('')}</svg>
-   ${mini?'':`<div class="ph">${FOTO}</div><div class="nm"><small>Česká republika</small>${OSOBA.jmeno} ${OSOBA.prijmeni}</div>`}
-   <span class="vzor${mini?' big':''}" ${mini?'style="font-size:13px;letter-spacing:1.5px;border-width:1.5px;padding:0 4px"':''}>VZOR</span></div>`;
-}
-
-function tabs(){
+const hdr=(title,left,right)=>`<div class="hdr">${left?`<button class="ib" data-a="${left}">${I.back}</button>`:'<span></span>'}<h1>${title}</h1>${right?`<button class="ib${right==='remove'?' red':''}" data-a="${right}">${right==='remove'?I.minus:I.close}</button>`:'<span></span>'}</div>`;
+function tabs(active){
   return `<div class="tabs">
-   <button class="tab ${S.tab==='doklady'?'on':''}" data-a="tab-doklady">${I.docs}<span>Doklady</span></button>
-   <div class="tabwrap"><button class="fab" data-a="prokazat">${I.prokaz}<span>Prokázat<br>se</span></button></div>
-   <button class="tab ${S.tab==='profil'?'on':''}" data-a="tab-profil">${I.prof}<span>Profil</span></button></div>`;
+   <button class="tab ${active==='doklady'?'on':''}" data-a="tab-doklady">${active==='doklady'?I.docs:I.docsO}<span>Doklady</span></button>
+   <div class="fabw"><button class="fab" data-a="prokazat">${I.prokaz}<span>Prokázat<br>se</span></button></div>
+   <button class="tab ${active==='profil'?'on':''}" data-a="tab-profil">${active==='profil'?I.profF:I.prof}<span>Profil</span></button></div>`;
 }
 
 const V = {
 splash(){
-  return `<div class="screen splash fade"><span class="demo-pill">UKÁZKA</span>
+  return `<div class="screen splash fade">
    <div class="top"><div class="logo">${EMBLEM}</div><h2>eDoklady</h2><div class="sub">nová éra prokazování totožnosti</div>
    <button class="link" data-a="about">Dozvědět se více nebo nahlásit chybu</button></div>
    <div class="bottom"><p>Vyberte účet pro přihlášení</p>
-    <div class="acc"><button data-a="login">${I.user.replace('<svg','<svg class="ico"')}<div><div class="nm">${OSOBA.jmeno} ${OSOBA.prijmeni}</div><div class="rl">Občan</div></div><span class="chev" style="width:18px">${I.chev}</span></button></div>
-    <button class="reg" data-a="regover">Registrace ověřovatele</button></div></div>`;
+    <div class="acc"><button data-a="login">${I.user.replace('<svg','<svg class="ico"')}<div><div class="nm">${OSOBA.jmeno.toUpperCase()} ${OSOBA.prijmeni.toUpperCase()}</div><div class="rl">Občan</div></div><span class="chev">${I.chev}</span></button></div>
+   </div></div>`;
 },
-lock(){
-  const dots=Array.from({length:6},(_,i)=>`<i class="${i<S.pin.length?'on':''}"></i>`).join('');
-  const k=[1,2,3,4,5,6,7,8,9].map(n=>`<button data-a="pin" data-n="${n}">${n}</button>`).join('');
-  return `<div class="screen lock fade"><div class="c"><div class="logo" style="width:60px;height:60px;border-radius:15px;margin:0">${EMBLEM}</div>
-   <h3>Zadejte PIN</h3><div class="m">nebo se přihlaste pomocí Face ID</div>
-   <div class="dots" id="dots">${dots}</div>
-   <div class="pad">${k}<button class="t" data-a="faceid">Face ID</button><button data-a="pin" data-n="0">0</button><button class="t" data-a="pindel">Smazat</button></div>
-   <button class="btn txt" style="margin-top:auto;width:auto" data-a="logout-nav">Přihlásit jiný účet</button></div></div>`;
-},
-home(){
-  if(S.tab==='profil') return V.profil();
-  return `<div class="screen fade">${hdr('Doklady')}
-   <div class="body">
-    <div class="list-card"><button class="doc-row" style="width:100%;text-align:left" data-a="detail">
-      <div class="mini">${card(true)}</div><div><div class="t">Občanský průkaz</div><div class="s">Platnost do ${OSOBA.platnost}</div></div><span style="margin-left:auto;width:18px;color:#a3aab7">${I.chev}</span></button></div>
-    <div class="ok" style="justify-content:flex-start;margin-left:4px">${I.check}Digitální výpis aktualizován ${fmtUpd(S.updated)}</div>
-    <div class="soon">Další doklady (řidičský průkaz, průkaz pojištěnce) budou do aplikace postupně přidávány.</div>
-   </div>${tabs()}</div>`;
+doklady(back){
+  return `<div class="screen${back?' back':' fade'}"><h1 class="doklady-h">Doklady</h1>
+   <div class="wallet"><button class="cardb" data-a="detail">${card()}</button>
+    <button class="kde" data-a="kde">Kde mohu eDoklady použít?</button></div>${tabs('doklady')}</div>`;
 },
 detail(back){
   const f=(k,v,copy)=>`<div class="f"><span class="k">${k}</span><span class="v">${v}${copy?`<button class="cp" data-a="copy">${I.copy}</button>`:''}</span></div>`;
-  return `<div class="screen${back?' back':''}">${hdr('Občanský průkaz','tab-doklady')}
-   <div class="body">${card()}
-    <div class="ok">${I.check}Digitální výpis aktualizován ${fmtUpd(S.updated)}</div>
-    <button class="photo" style="display:block" data-a="foto">${FOTO}<span class="ex">${I.expand}</span></button>
-    <div class="fields">
-     ${f('Číslo dokladu',OSOBA.cislo,1)}
-     <div class="f col small"><span class="k">Změna údajů</span><span class="v">${OSOBA.zmena}</span></div>
-    </div>
-    <div class="fields">
-     ${f('Příjmení',OSOBA.prijmeni)}${f('Jméno',OSOBA.jmeno)}${f('Rodné číslo',OSOBA.rc,1)}${f('Datum narození',OSOBA.narozeni)}${f('Místo narození',OSOBA.misto)}
+  return `<div class="screen${back?' back':''}">${hdr('Občanský průkaz','tab-doklady','remove')}
+   <div class="body"><div class="detail-card">${card()}</div>
+    <div class="pill">${I.check}Digitální výpis aktualizován ${fmtUpd(S.updated)}</div>
+    <button class="photo" data-a="foto"><img src="foto.jpg?v=2" alt=""><span class="ex">${I.expand}</span></button>
+    <div class="fields">${f('Číslo dokladu',OSOBA.cislo,1)}${f('Příjmení',OSOBA.prijmeni)}${f('Jméno',OSOBA.jmeno)}</div>
+    <div class="fields">${f('Rodné číslo',OSOBA.rc,1)}${f('Datum narození',OSOBA.narozeni)}${f('Místo narození',OSOBA.misto)}
      <div class="f col"><span class="k">Trvalý pobyt</span><span class="v">${OSOBA.pobyt}</span></div>
-     ${f('Pohlaví',OSOBA.pohlavi)}${f('Státní občanství',OSOBA.obcanstvi)}
-    </div>
-    <div class="fields">
-     ${f('Datum vydání',OSOBA.vydani)}${f('Platnost do',OSOBA.platnost)}${f('Vydal',OSOBA.vydal)}
-     <div class="f"><span class="k">Podpis držitele</span><span class="v">${PODPIS}</span></div>
-    </div>
-    <div class="ver">Údaje jsou výpisem z evidence občanských průkazů.<br>Výpis je platný 48 hodin od aktualizace.</div>
-   </div>${tabs()}</div>`;
+     ${f('Pohlaví',OSOBA.pohlavi)}${f('Státní občanství',OSOBA.obcanstvi)}</div>
+    <div class="fields">${f('Datum vydání',OSOBA.vydani)}${f('Platnost do',OSOBA.platnost)}${f('Vydal',OSOBA.vydal)}
+     <div class="f col"><span class="k">Změna údajů</span><span class="v">${OSOBA.zmena}</span></div>
+     <div class="f"><span class="k">Podpis držitele</span><span class="v">${PODPIS}</span></div></div>
+   </div>${tabs('doklady')}</div>`;
 },
-profil(){
-  return `<div class="screen fade">${hdr('Profil')}
+profil(back){
+  return `<div class="screen${back?' back':' fade'}"><h1 class="prof-h">Profil</h1>
    <div class="body">
-    <div class="prof"><div class="av">${OSOBA.jmeno[0]}${OSOBA.prijmeni[0]}</div><div><div style="font-weight:600">${OSOBA.jmeno} ${OSOBA.prijmeni}</div><div style="font-size:13px;color:var(--muted);margin-top:2px">Občan · přihlášen přes Identitu občana</div></div></div>
+    <div class="prof"><div class="av">${I.user}</div><div><div style="font-weight:500;font-size:16px">${OSOBA.jmeno} ${OSOBA.prijmeni}</div><div style="font-size:13px;color:var(--muted);margin-top:3px">Občan</div></div></div>
     <div class="menu">
      <button data-a="historie">${I.hist}Historie prokazování<span class="chev">${I.chev}</span></button>
-     <button data-a="zabezpeceni">${I.lock}Zabezpečení a přihlášení<span class="chev">${I.chev}</span></button>
-     <button data-a="nastaveni">${I.gear}Nastavení<span class="chev">${I.chev}</span></button>
-     <button data-a="about">${I.help}Nápověda a podpora<span class="chev">${I.chev}</span></button>
+     <button data-a="zabezpeceni">${I.lock}Zabezpečení<span class="chev">${I.chev}</span></button>
+     <button data-a="notif">${I.bell}Oznámení<span class="chev">${I.chev}</span></button>
+     <button data-a="jazyk">${I.globe}Jazyk<span class="chev">${I.chev}</span></button>
+     <button data-a="about">${I.help}Nápověda<span class="chev">${I.chev}</span></button>
     </div>
-    <div class="menu"><button data-a="logout">${I.out}<span class="red">Odhlásit se</span></button></div>
-    <div class="ver">eDoklady · výuková ukázka<br>Smyšlené údaje, nejde o oficiální aplikaci.</div>
-   </div>${tabs()}</div>`;
+    <div class="menu"><button class="red" data-a="logout">${I.out}Odhlásit se</button></div>
+    <div class="ver">Verze 1.4.2</div>
+   </div>${tabs('profil')}</div>`;
 },
 historie(back){
   const h=S.history.slice().reverse();
   return `<div class="screen${back?' back':''}">${hdr('Historie prokazování','tab-profil')}
    <div class="body">${h.length?h.map(x=>`<div class="hist"><div class="r1"><span>${x.t}</span><span class="tag ${x.ok?'y':'n'}">${x.ok?'Sdíleno':'Odmítnuto'}</span></div>
-     <div class="r2">${x.s}</div><div class="r3">${x.sada}</div></div>`).join(''):'<div class="empty">Zatím jste se nikomu neprokazovali.</div>'}
-    ${h.length?'<button class="btn txt" data-a="clearhist" style="margin-top:14px">Vymazat historii</button>':''}</div></div>`;
+     <div class="r2">${x.s}</div><div class="r3">${x.sada}</div></div>`).join(''):'<div class="empty">Zatím žádné prokázání.</div>'}
+    ${h.length?'<button class="btn txt" data-a="clearhist" style="margin-top:16px">Vymazat historii</button>':''}</div></div>`;
 },
-qr(){
-  return `<div class="screen">${hdr('Prokázání údajů','','close')}
-   <div class="title" style="margin:6px 0 0">Navázání spojení</div>
-   <div class="qrwrap"><button class="qr" data-a="simscan">${qrSvg(Date.now())}<span class="emb">${EMBLEM}</span></button>
-    <div class="hint">Ukažte ověřovateli QR kód, nebo u přepážky</div>
-    <div class="bt">${I.bt}Bluetooth je zapnutý</div></div>
+qr(back){
+  return `<div class="screen${back?' back':''}" style="background:#fafafa">${hdr('Prokázání údajů','close')}
+   <div class="h2" style="margin-top:22px">Navázání spojení</div>
+   <div class="qrbox"><button class="qr" data-a="simscan">${qrSvg(Date.now())}<span class="emb">${EMBLEM}</span></button>
+    <div class="hint">Ukažte ověřovateli QR kód, nebo u přepážky</div></div>
    <div class="foot"><button class="btn out" data-a="scan">${I.camera}Naskenujte QR kód ověřovatele</button></div></div>`;
 },
 connecting(){
-  return `<div class="screen fade">${hdr('Prokázání údajů','','close')}
-   <div class="done"><div class="spin"></div><h2>Navazuji spojení</h2><p>Ověřovatel načetl QR kód.<br>Přijímám žádost o údaje…</p></div></div>`;
+  return `<div class="screen fade" style="background:#fafafa">${hdr('Prokázání údajů','','close')}
+   <div class="done"><div class="spin"></div><h2>Navazování spojení</h2><p>Načítání požadavku ověřovatele…</p></div></div>`;
 },
 scan(){
   return `<div class="screen cam" id="cam"><video id="vid" playsinline muted autoplay></video>${hdr('Prokázání údajů','qr')}
-   <div class="title" style="color:#fff;margin:4px 0 0;position:relative;z-index:2">Navázání spojení</div>
-   <div class="frame"><i></i><i></i><i></i><i></i><div class="scan"></div></div>
+   <div class="h2">Navázání spojení</div>
+   <div class="frame"><i></i><i></i><i></i><i></i></div>
    <div class="ct">Namiřte na QR kód ověřovatele, naskenuje se automaticky</div></div>`;
 },
 consent(){
   const sc=S.scen, l=a=>a.map(k=>`<li>${LABEL[k]}</li>`).join('');
-  return `<div class="screen">${hdr('Prokázání údajů','','close')}
-   <div class="body"><div class="title">Sdílet údaje<br>ke kontrole</div>
-    <div class="blk"><div class="lbl">Subjekt</div><div class="val">${sc.subjekt}</div></div>
-    <div class="blk"><div class="lbl">Sada údajů</div><div class="val">${sc.sada}</div></div>
-    <div class="blk">
-     ${sc.kontrola.length?`<div class="lbl">Údaje ke kontrole <button data-a="i-kontrola">${I.info}</button></div><ul>${l(sc.kontrola)}</ul>`:''}
-     ${sc.zprac.length?`<div class="lbl" style="margin-top:${sc.kontrola.length?12:0}px">Údaje ke kontrole i zpracování <button data-a="i-zprac">${I.info}</button></div><ul>${l(sc.zprac)}</ul>`:''}
-    </div>
-    <div class="note">Údaje ke kontrole si ověřovatel může jen prohlédnout. Údaje ke zpracování si smí uložit, např. do formuláře nebo výpisu.</div>
-   </div>
+  return `<div class="screen" style="background:#fafafa">${hdr('Prokázání údajů','','close')}
+   <div class="body" style="padding:0"><div class="h2" style="margin-top:22px">Sdílet údaje ke kontrole</div>
+    <div class="cons">
+     <div class="lbl">Subjekt</div><div class="val">${sc.subjekt}</div>
+     <div class="lbl">Údaje ke kontrole</div><ul>${l(sc.kontrola)}<button class="ii" data-a="i-kontrola">${I.info}</button></ul>
+     ${sc.zprac.length?`<div class="lbl">Údaje ke kontrole i zpracování</div><ul>${l(sc.zprac)}<button class="ii" data-a="i-zprac">${I.info}</button></ul>`:''}
+    </div></div>
    <div class="foot"><button class="btn pri" data-a="share">Sdílet údaje</button><button class="btn txt" data-a="decline">Nesouhlasím</button></div></div>`;
 },
 shared(){
-  return `<div class="screen fade">${hdr('Prokázání údajů')}
-   <div class="done"><div class="circle">${I.check}</div><h2>Údaje byly sdíleny</h2><p>Ověřovatel <b style="color:var(--text);font-weight:600">${S.scen.subjekt}</b> nyní vidí požadované údaje. Záznam najdete v Historii prokazování.</p></div>
+  return `<div class="screen fade" style="background:#fafafa">${hdr('Prokázání údajů')}
+   <div class="done"><div class="circle">${I.check}</div><h2>Údaje byly sdíleny</h2><p>${S.scen.subjekt}</p></div>
    <div class="foot"><button class="btn pri" data-a="domu">Domů</button></div></div>`;
 },
 declined(){
-  return `<div class="screen fade">${hdr('Prokázání údajů')}
-   <div class="done"><div class="circle no">${I.x}</div><h2>Sdílení odmítnuto</h2><p>Ověřovateli nebyly předány žádné údaje.</p></div>
+  return `<div class="screen fade" style="background:#fafafa">${hdr('Prokázání údajů')}
+   <div class="done"><div class="circle no">${I.x}</div><h2>Sdílení bylo odmítnuto</h2><p>Ověřovateli nebyly předány žádné údaje.</p></div>
    <div class="foot"><button class="btn pri" data-a="domu">Domů</button></div></div>`;
 },
 };
 
-function render(back){
-  const fn = S.screen==='home' && S.tab==='detail' ? V.detail : V[S.screen];
-  app.innerHTML = fn(back);
-  after();
-}
-function after(){
-  if(S.screen==='scan') startCam();
-}
+function render(back){ app.innerHTML = V[S.screen](back); if(S.screen==='scan') startCam(); }
 async function startCam(){
   const cam=document.getElementById('cam');
   try{
     stream = await navigator.mediaDevices.getUserMedia({video:{facingMode:'environment'},audio:false});
     if(S.screen!=='scan'){ stopCam(); return; }
     const v=document.getElementById('vid'); v.srcObject=stream; await v.play().catch(()=>{});
-  }catch(e){ /* bez kamery – jen tmavá obrazovka */ }
-  later(()=>{ cam && cam.classList.add('found'); vib(); later(()=>{ go('consent',{scen:PREPAZKA,via:'prepazka'}); },450); },2600);
+  }catch(e){}
+  if(S.screen!=='scan') return;
+  later(()=>{ cam && cam.classList.add('found'); vib(); later(()=>{ go('connecting'); later(()=>go('consent',{scen:PREPAZKA}),1150); },350); },2600);
 }
 function nextScen(){ const sc=SCENARE[S.scIdx%SCENARE.length]; S.scIdx=(S.scIdx+1)%SCENARE.length; store.set('sc',S.scIdx); return sc; }
 function logHist(ok){ S.history.push({t:fmtFull(new Date()),s:S.scen.subjekt,sada:S.scen.sada,ok}); S.history=S.history.slice(-30); store.set('hist',S.history); }
@@ -481,60 +434,51 @@ function sheet(title,text){
   const bg=document.createElement('div'); bg.className='sheet-bg';
   const sh=document.createElement('div'); sh.className='sheet';
   sh.innerHTML=`<div class="grab"></div><h3>${title}</h3><p>${text}</p><button class="btn pri">Rozumím</button>`;
-  const close=()=>{bg.remove();sh.remove();};
-  bg.onclick=close; sh.querySelector('button').onclick=close;
+  const close=()=>{bg.remove();sh.remove();}; bg.onclick=close; sh.querySelector('button').onclick=close;
   app.append(bg,sh);
 }
-function unlock(){
+function faceId(){
+  if(document.querySelector('.faceov')) return;
   const ov=document.createElement('div'); ov.className='faceov';
   ov.innerHTML=`<div class="facebox"><div style="text-align:center">${I.faceid}<div class="fl">Face ID</div></div></div>`;
   app.appendChild(ov);
-  setTimeout(()=>{ ov.querySelector('.facebox').innerHTML=`<div style="text-align:center;color:#1a73e8"><svg viewBox="0 0 64 64" width="64" height="64" fill="none" stroke="#1a73e8" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="24"/><path d="M21 33l8 8 14-16"/></svg></div>`; vib(); },900);
-  setTimeout(()=>{ S.updated=new Date(); store.set('in',true); go('home',{tab:'doklady',pin:''}); },1400);
+  setTimeout(()=>{ ov.querySelector('.facebox').innerHTML=`<div style="text-align:center">${I.faceok}<div class="fl">Face ID</div></div>`; vib(); },850);
+  setTimeout(()=>{ S.updated=new Date(); store.set('in',true); go('doklady'); },1350);
 }
 
-/* ---------- akce ---------- */
 app.addEventListener('click',e=>{
   const b=e.target.closest('[data-a]'); if(!b) return;
-  const a=b.dataset.a;
-  switch(a){
-    case 'login': go('lock',{pin:''}); setTimeout(()=>{ if(S.screen==='lock') unlock(); },500); break;
-    case 'faceid': unlock(); break;
-    case 'pin': if(S.pin.length<6){ S.pin+=b.dataset.n; const d=document.querySelectorAll('#dots i'); d[S.pin.length-1]&&d[S.pin.length-1].classList.add('on'); if(S.pin.length===6) setTimeout(()=>{S.updated=new Date(); store.set('in',true); go('home',{tab:'doklady',pin:''});},250);} break;
-    case 'pindel': S.pin=S.pin.slice(0,-1); render(); break;
-    case 'logout-nav': go('splash'); break;
-    case 'regover': sheet('Registrace ověřovatele','Tato ukázka předvádí jen stranu občana. Ověřovatel (úřad, škola, prodejna) se registruje přes Správu ověřovatelů a ověřuje pomocí stejné aplikace nebo webové čtečky.'); break;
-    case 'about': sheet('O ukázce','Výuková napodobenina aplikace eDoklady se smyšlenou osobou (Jan Vzorový). Nejde o oficiální aplikaci Digitální a informační agentury a nelze se s ní prokázat. Oficiální informace: edoklady.gov.cz'); break;
-    case 'tab-doklady': go('home',{tab:'doklady',back:S.tab==='detail'}); break;
-    case 'detail': go('home',{tab:'detail'}); break;
-    case 'tab-profil': go('home',{tab:'profil',back:S.screen==='historie'}); break;
+  switch(b.dataset.a){
+    case 'login': faceId(); break;
+    case 'about': sheet('eDoklady','Aplikace pro prokazování totožnosti digitálním občanským průkazem. Tato verze je výuková ukázka se smyšlenou osobou, určená k předvedení – nejde o skutečný doklad.'); break;
+    case 'kde': sheet('Kde mohu eDoklady použít?','Na úřadech, na poště, u lékaře, v bance, při kontrole věku v obchodě nebo u policie – všude, kde má ověřovatel aplikaci eDoklady nebo webovou čtečku.'); break;
+    case 'tab-doklady': go('doklady',{back:S.screen==='detail'}); break;
+    case 'detail': go('detail'); break;
+    case 'remove': sheet('Odebrat doklad','Doklad bude z tohoto zařízení odebrán. Znovu ho nahrajete přihlášením přes Identitu občana.'); break;
+    case 'tab-profil': go('profil',{back:S.screen==='historie'}); break;
     case 'historie': go('historie'); break;
     case 'clearhist': S.history=[]; store.set('hist',[]); render(); break;
-    case 'zabezpeceni': sheet('Zabezpečení a přihlášení','Aplikace je chráněna Face ID / otiskem prstu a záložním 6místným PINem. Při ztrátě telefonu lze zařízení odebrat na Portálu občana. Účet může mít nejvýše 2 telefony.'); break;
-    case 'nastaveni': sheet('Nastavení','Upozornění na konec platnosti dokladu (90 dní předem), jazyk aplikace, Bluetooth a oprávnění kamery.'); break;
+    case 'zabezpeceni': sheet('Zabezpečení','Přihlášení pomocí Face ID je zapnuté.'); break;
+    case 'notif': sheet('Oznámení','Upozornění na blížící se konec platnosti dokladu je zapnuté.'); break;
+    case 'jazyk': sheet('Jazyk','Čeština'); break;
     case 'logout': store.set('in',false); go('splash'); break;
-    case 'prokazat': go('qr',{scen:null}); break;
-    case 'close': case 'domu': go('home',{tab:'doklady'}); break;
+    case 'prokazat': go('qr'); break;
+    case 'close': case 'domu': go('doklady',{back:true}); break;
     case 'qr': go('qr',{back:true}); break;
-    case 'simscan': vib(); go('connecting'); later(()=>go('consent',{scen:nextScen(),via:'bt'}),1300); break;
+    case 'simscan': vib(); go('connecting'); later(()=>go('consent',{scen:nextScen()}),1200); break;
     case 'scan': go('scan'); break;
     case 'share': logHist(true); vib(); go('shared'); break;
     case 'decline': logHist(false); go('declined'); break;
-    case 'foto': { const m=document.createElement('div'); m.className='modal'; m.innerHTML=`<div class="big">${FOTO}</div>`; m.onclick=()=>m.remove(); app.appendChild(m); } break;
-    case 'copy': toast('Zkopírováno do schránky'); break;
-    case 'i-kontrola': sheet('Údaje ke kontrole','Ověřovatel si je může jen prohlédnout na svém zařízení. Nesmí si je uložit, opsat ani vytisknout.'); break;
-    case 'i-zprac': sheet('Údaje ke kontrole i zpracování','Tyto údaje si ověřovatel smí uložit (např. vyplnit do formuláře nebo stáhnout jako výpis), protože k tomu má zákonný důvod.'); break;
+    case 'foto': { const m=document.createElement('div'); m.className='modal'; m.innerHTML=`<img src="foto.jpg?v=2" alt="">`; m.onclick=()=>m.remove(); app.appendChild(m); } break;
+    case 'copy': toast('Zkopírováno'); break;
+    case 'i-kontrola': sheet('Údaje ke kontrole','Ověřovatel si údaje může pouze prohlédnout. Nesmí je ukládat ani dále zpracovávat.'); break;
+    case 'i-zprac': sheet('Údaje ke kontrole i zpracování','Tyto údaje si ověřovatel smí uložit, protože k tomu má zákonný důvod.'); break;
   }
 });
-/* PIN obrazovka: překreslit kvůli „Smazat“ správně */
-const _pinRender=V.lock;
 
-/* start – zapamatované přihlášení vyžaduje odemčení jako skutečná aplikace */
-if(store.get('in',false)) { go('lock',{pin:''}); setTimeout(()=>{ if(S.screen==='lock') unlock(); },600); } else render();
-
-/* aktualizace „výpisu“ při návratu do aplikace */
-document.addEventListener('visibilitychange',()=>{ if(!document.hidden && S.screen!=='splash' && S.screen!=='lock'){ S.updated=new Date(); } });
-/* zákaz pinch-zoomu v Safari */
+render();
+if(store.get('in',false)) setTimeout(faceId,400);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden) S.updated=new Date(); });
 document.addEventListener('gesturestart',e=>e.preventDefault());
 if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(()=>{});
 </script>
