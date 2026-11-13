@@ -69,6 +69,7 @@ img{-webkit-user-drag:none;pointer-events:none}
 .acc{background:#fff;color:var(--text);border-radius:12px;overflow:hidden}
 .acc button{width:100%;display:flex;align-items:center;gap:16px;padding:16px 16px 16px 18px;text-align:left}
 .acc button:active{background:#f0f3f8}
+.acc button+button{border-top:1px solid #ececec}
 .acc .ico{width:24px;height:24px;color:#404a5c;flex:none}
 .acc .nm{font-weight:500;color:var(--blue);font-size:15px;letter-spacing:.2px}
 .acc .rl{font-size:12px;color:var(--muted);margin-top:3px}
@@ -209,6 +210,23 @@ img{-webkit-user-drag:none;pointer-events:none}
 .prow.me .avc svg{width:26px;height:26px;color:#444}
 .prow.me b{display:block;font-weight:500;font-size:16px;color:#2b2b2b}
 .prow.me small{display:block;font-size:13px;color:#6f6f6f;margin-top:3px}
+.prow.me .end svg{transition:transform .2s}.prow.me.open .end svg{transform:rotate(180deg)}
+.pmenu{border-bottom:1px solid #ececec;animation:fd .2s}
+.pmenu .prow{min-height:66px}
+.pmenu .avc{width:42px;height:42px;border-radius:50%;background:#f0f0f0;display:grid;place-items:center;flex:none}
+.pmenu .avc svg{width:24px;height:24px;color:#444}
+.pmenu .prow.add .avc{background:#e8eef8}.pmenu .prow.add .avc svg{color:#2f5fa7}
+.pmenu .prow.add{color:#2f5fa7;font-weight:500}
+.pmenu b{display:block;font-weight:500;font-size:16px;color:#2b2b2b}
+.pmenu small{display:block;font-size:13px;color:#6f6f6f;margin-top:3px}
+.sheet .opts{margin:-4px -20px 12px;border-top:1px solid #eee}
+.sheet .opt{width:100%;display:flex;align-items:center;gap:14px;padding:13px 20px;border-bottom:1px solid #eee;text-align:left}
+.sheet .opt:active{background:#f1f1f1}
+.sheet .opt .avc{width:38px;height:38px;border-radius:50%;background:#f0f0f0;display:grid;place-items:center;flex:none}
+.sheet .opt .avc svg{width:22px;height:22px;color:#444}
+.sheet .opt b{display:block;font-weight:500;font-size:15.5px;color:#2b2b2b}
+.sheet .opt small{display:block;font-size:12.5px;color:#6f6f6f;margin-top:2px}
+.sheet .btn+.btn{margin-top:8px}
 .tg{margin-left:auto;width:50px;height:30px;border-radius:15px;background:#2f5fa7;position:relative;flex:none;transition:background .2s}
 .tg::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:right .2s}
 .tg.off{background:#c9c9c9}.tg.off::after{right:23px}
@@ -254,13 +272,23 @@ img{-webkit-user-drag:none;pointer-events:none}
 <div id="app"></div>
 
 <script>
-/* Výuková ukázka – smyšlená osoba, AI fotka neexistujícího člověka. Rodné číslo záměrně nesplňuje kontrolu dělitelnosti 11. */
-const OSOBA = {
-  prijmeni:'Kolář', jmeno:'Tomáš', cislo:'207451938', rc:'000314/5127',
-  narozeni:'14.03.2000', misto:'Praha 4', pobyt:'Na Pankráci 1683/127, Praha 4 – Nusle, 140&nbsp;00',
-  pohlavi:'Muž', obcanstvi:'Česká republika', vydani:'02.06.2021', platnost:'02.06.2031',
-  vydal:'Magistrát hl. m. Prahy', zmena:'Není evidována žádná změna'
-};
+/* Výuková ukázka – smyšlené postavy, AI fotky neexistujících lidí. Rodná čísla záměrně nesplňují kontrolu dělitelnosti 11. */
+const OSOBY = [
+ { id:'kolar', foto:'foto.jpg?v=2', prijmeni:'Kolář', jmeno:'Tomáš', cislo:'207451938', rc:'000314/5127',
+   narozeni:'14.03.2000', misto:'Praha 4', pobyt:'Na Pankráci 1683/127, Praha 4 – Nusle, 140&nbsp;00',
+   pohlavi:'Muž', obcanstvi:'Česká republika', vydani:'02.06.2021', platnost:'02.06.2031',
+   vydal:'Magistrát hl. m. Prahy', zmena:'Není evidována žádná změna' },
+ { id:'svobodova', foto:'foto-2.jpg?v=1', prijmeni:'Svobodová', jmeno:'Hana', cislo:'213860475', rc:'695822/4417',
+   narozeni:'22.08.1969', misto:'Brno', pobyt:'Kounicova 684/32, Brno – Veveří, 602&nbsp;00',
+   pohlavi:'Žena', obcanstvi:'Česká republika', vydani:'17.09.2022', platnost:'17.09.2032',
+   vydal:'Magistrát města Brna', zmena:'Není evidována žádná změna' },
+ { id:'dvorak', foto:'foto-3.jpg?v=1', prijmeni:'Dvořák', jmeno:'Petr', cislo:'209137582', rc:'660312/7719',
+   narozeni:'12.03.1966', misto:'Kolín', pobyt:'Husova 214/9, Kolín II, 280&nbsp;02',
+   pohlavi:'Muž', obcanstvi:'Česká republika', vydani:'05.04.2021', platnost:'05.04.2031',
+   vydal:'Městský úřad Kolín', zmena:'Není evidována žádná změna' },
+];
+const najdi=id=>OSOBY.find(o=>o.id===id);
+let OSOBA = OSOBY[0];
 const LABEL = { foto:'Fotografie', prijmeni:'Příjmení', jmeno:'Jméno', pobyt:'Trvalý pobyt', rc:'Rodné číslo',
   narozeni:'Datum narození', misto:'Místo narození', obcanstvi:'Státní občanství', pohlavi:'Pohlaví', podpis:'Podpis držitele',
   cislo:'Číslo dokladu', vydani:'Datum vydání', platnost:'Platnost do', vydal:'Vydal', zmena:'Změna údajů', vek18:'Věk nad 18 let' };
@@ -296,6 +324,7 @@ const I = {
   globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.6 5.7 3.6 9s-1.1 6.3-3.6 9c-2.5-2.7-3.6-5.7-3.6-9S9.5 5.7 12 3z"/></svg>',
   help:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17v.3"/></svg>',
   out:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 8l-4 4 4 4M6 12h10"/></svg>',
+  plus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>',
   chevd:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>',
   ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h7v7M20 4l-9 9M18 14v4.5a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 014 18.5v-11A1.5 1.5 0 015.5 6H10"/></svg>',
   exit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h8A1.5 1.5 0 0120 5.5v13a1.5 1.5 0 01-1.5 1.5h-8A1.5 1.5 0 019 18.5V17M14 12H3.5M7 8.5L3.5 12 7 15.5"/></svg>',
@@ -330,7 +359,13 @@ const store = {
   get(k,d){ try{ const v=localStorage.getItem('edd_'+k); return v==null?d:JSON.parse(v);}catch(e){return d;} },
   set(k,v){ try{ localStorage.setItem('edd_'+k,JSON.stringify(v)); }catch(e){} }
 };
-const S = { screen:'splash', scen:null, history:store.get('hist',[]), scIdx:store.get('sc',0), updated:new Date() };
+/* profily na zařízení: seznam přidaných + aktivní; historie zvlášť pro každý profil */
+if(store.get('hist',null) && !store.get('hist_kolar',null)) store.set('hist_kolar',store.get('hist',[]));
+let PROF = store.get('prof',null) || (store.get('reg',false)?['kolar']:[]);
+PROF = PROF.filter(najdi);
+function aktivuj(id){ OSOBA=najdi(id)||OSOBY[0]; store.set('akt',OSOBA.id); S.history=store.get('hist_'+OSOBA.id,[]); }
+const S = { screen:'splash', scen:null, history:[], scIdx:store.get('sc',0), updated:new Date(), menu:false };
+aktivuj(PROF.includes(store.get('akt','')) ? store.get('akt','') : (PROF[0]||'kolar'));
 let timers=[], stream=null;
 const app=document.getElementById('app');
 const p2=n=>String(n).padStart(2,'0');
@@ -373,7 +408,7 @@ splash(){
    <div class="top"><div class="logo">${EMBLEM}</div><h2>eDoklady</h2><div class="sub">nová éra prokazování totožnosti</div>
    <button class="link" data-a="about">Dozvědět se více nebo nahlásit chybu</button></div>
    <div class="bottom"><p>Vyberte účet pro přihlášení</p>
-    <div class="acc"><button data-a="login">${I.user.replace('<svg','<svg class="ico"')}<div><div class="nm">${OSOBA.jmeno.toUpperCase()} ${OSOBA.prijmeni.toUpperCase()}</div><div class="rl">Občan</div></div><span class="chev">${I.chev}</span></button></div>
+    <div class="acc">${PROF.map(najdi).map(o=>`<button data-a="login" data-id="${o.id}">${I.user.replace('<svg','<svg class="ico"')}<div><div class="nm">${o.jmeno.toUpperCase()} ${o.prijmeni.toUpperCase()}</div><div class="rl">Občan</div></div><span class="chev">${I.chev}</span></button>`).join('')}</div>
    </div></div>`;
 },
 doklady(back){
@@ -386,7 +421,7 @@ detail(back){
   return `<div class="screen${back?' back':''}">${hdr('Občanský průkaz','tab-doklady','remove')}
    <div class="body"><div class="detail-card">${card()}</div>
     <div class="pill">${I.check}Digitální výpis aktualizován ${fmtUpd(S.updated)}</div>
-    <button class="photo" data-a="foto"><img src="foto.jpg?v=2" alt=""></button>
+    <button class="photo" data-a="foto"><img src="${OSOBA.foto}" alt=""></button>
     <div class="fields">${f('Číslo dokladu',OSOBA.cislo,1)}${f('Příjmení',OSOBA.prijmeni)}${f('Jméno',OSOBA.jmeno)}</div>
     <div class="fields">${f('Rodné číslo',OSOBA.rc,1)}${f('Datum narození',OSOBA.narozeni)}${f('Místo narození',OSOBA.misto)}
      <div class="f col"><span class="k">Trvalý pobyt</span><span class="v">${OSOBA.pobyt}</span></div>
@@ -402,7 +437,9 @@ profil(back){
    <div class="body">
     <div class="sec" style="margin-top:6px">Aktivní profil a jeho přepnutí</div>
     <div class="pcard">
-     <button class="prow me" data-a="ucty"><span class="avc">${I.user}</span><span><b>${OSOBA.jmeno} ${OSOBA.prijmeni}</b><small>Občan</small></span><span class="end" style="color:#555">${I.chevd}</span></button>
+     <button class="prow me${S.menu?' open':''}" data-a="ucty"><span class="avc">${I.user}</span><span><b>${OSOBA.jmeno} ${OSOBA.prijmeni}</b><small>Občan</small></span><span class="end" style="color:#555">${I.chevd}</span></button>
+     ${S.menu?`<div class="pmenu">${PROF.filter(id=>id!==OSOBA.id).map(najdi).map(o=>`<button class="prow oth" data-a="prepni" data-id="${o.id}"><span class="avc">${I.user}</span><span><b>${o.jmeno} ${o.prijmeni}</b><small>Občan</small></span></button>`).join('')}
+      <button class="prow add" data-a="pridat"><span class="avc">${I.plus}</span><span>Přidat profil</span></button></div>`:''}
      <button class="prow" data-a="logout">${I.exit}Odhlásit se<span class="end">${I.chev}</span></button>
     </div>
     <div class="sec">Zabezpečení</div>
@@ -485,13 +522,25 @@ async function startCam(){
   kick();
 }
 function nextScen(){ const sc=SCENARE[S.scIdx%SCENARE.length]; S.scIdx=(S.scIdx+1)%SCENARE.length; store.set('sc',S.scIdx); return sc; }
-function logHist(ok){ S.history.push({t:fmtFull(new Date()),s:S.scen.subjekt,sada:S.scen.sada,ok}); S.history=S.history.slice(-30); store.set('hist',S.history); }
-function sheet(title,text){
+function logHist(ok){ S.history.push({t:fmtFull(new Date()),s:S.scen.subjekt,sada:S.scen.sada,ok}); S.history=S.history.slice(-30); store.set('hist_'+OSOBA.id,S.history); }
+function sheet(title,text,extra='',onPick=null,btn='Rozumím'){
   const bg=document.createElement('div'); bg.className='sheet-bg';
   const sh=document.createElement('div'); sh.className='sheet';
-  sh.innerHTML=`<div class="grab"></div><h3>${title}</h3><p>${text}</p><button class="btn pri">Rozumím</button>`;
-  const close=()=>{bg.remove();sh.remove();}; bg.onclick=close; sh.querySelector('button').onclick=close;
+  sh.innerHTML=`<div class="grab"></div><h3>${title}</h3><p>${text}</p>${extra}<button class="btn pri" data-k="x">${btn}</button>`;
+  const close=()=>{bg.remove();sh.remove();}; bg.onclick=close;
+  sh.onclick=e=>{ const k=e.target.closest('[data-k]'); if(!k) return; e.stopPropagation(); close(); if(k.dataset.k!=='x'&&onPick) onPick(k.dataset.k); };
   app.append(bg,sh);
+}
+function registrace(id){
+  go('registering'); later(()=>{ const t=document.getElementById('rgt'),q=document.getElementById('rgp'); if(t){t.textContent='Stahování dokladu';q.textContent='Občanský průkaz se ukládá do zařízení…';} },1500);
+  later(()=>{ if(!PROF.includes(id)) PROF.push(id); store.set('prof',PROF); aktivuj(id); store.set('reg',true); store.set('in',true); S.menu=false; S.updated=new Date(); go('doklady'); },3000);
+}
+function vyberPostavu(nadpis){
+  const volne=OSOBY.filter(o=>!PROF.includes(o.id));
+  if(!volne.length){ sheet(nadpis,'Všechny postavy už jsou na tomto zařízení přidané.'); return; }
+  sheet(nadpis,'Přihlaste se přes Identitu občana. Vyberte osobu, která se přihlašuje:',
+    `<div class="opts">${volne.map(o=>`<button class="opt" data-k="${o.id}"><span class="avc">${I.user}</span><span><b>${o.jmeno} ${o.prijmeni}</b><small>nar. ${o.narozeni}</small></span></button>`).join('')}</div>`,
+    registrace,'Zrušit');
 }
 function faceId(){
   if(document.querySelector('.faceov')) return;
@@ -505,10 +554,12 @@ function faceId(){
 app.addEventListener('click',e=>{
   const b=e.target.closest('[data-a]'); if(!b) return;
   switch(b.dataset.a){
-    case 'login': faceId(); break;
-    case 'register': go('registering'); later(()=>{ const t=document.getElementById('rgt'),q=document.getElementById('rgp'); if(t){t.textContent='Stahování dokladu';q.textContent='Občanský průkaz se ukládá do zařízení…';} },1500); later(()=>{ store.set('reg',true); store.set('in',true); S.updated=new Date(); go('doklady'); },3000); break;
+    case 'login': if(b.dataset.id) aktivuj(b.dataset.id); faceId(); break;
+    case 'register': vyberPostavu('Registrace'); break;
+    case 'pridat': vyberPostavu('Přidat profil'); break;
+    case 'prepni': aktivuj(b.dataset.id); S.menu=false; S.updated=new Date(); faceId(); break;
     case 'overovatel': sheet('Registrace ověřovatele','Ověřovatelé (úřady, firmy, obchody) se registrují v Portálu ověřovatele. V této ukázce je dostupná jen strana občana.'); break;
-    case 'ucty': sheet('Přepnutí profilu','Na tomto zařízení je přihlášený jediný profil.'); break;
+    case 'ucty': S.menu=!S.menu; render(); app.firstElementChild.style.animation='none'; break;
     case 'pinzmena': sheet('Změna přihlašovacího PINu','Nejdřív zadáte současný PIN, potom dvakrát nový šestimístný PIN.'); break;
     case 'bio': { const v=!store.get('bio',true); store.set('bio',v); b.querySelector('.tg').classList.toggle('off',!v); } break;
     case 'gdpr': sheet('Zpracování osobních údajů','Údaje z dokladu se ukládají jen v tomto zařízení a sdílejí se pouze s vaším souhlasem, vždy jen ty vyžádané.'); break;
@@ -517,14 +568,17 @@ app.addEventListener('click',e=>{
     case 'kde': sheet('Kde mohu eDoklady použít?','Na úřadech, na poště, u lékaře, v bance, při kontrole věku v obchodě nebo u policie – všude, kde má ověřovatel aplikaci eDoklady nebo webovou čtečku.'); break;
     case 'tab-doklady': go('doklady',{back:S.screen==='detail'}); break;
     case 'detail': go('detail'); break;
-    case 'remove': sheet('Odebrat doklad','Doklad bude z tohoto zařízení odebrán. Znovu ho nahrajete přihlášením přes Identitu občana.'); break;
-    case 'tab-profil': go('profil',{back:S.screen==='historie'}); break;
+    case 'remove': sheet('Odebrat doklad','Doklad bude z tohoto zařízení odebrán. Znovu ho nahrajete přihlášením přes Identitu občana.',
+      '<button class="btn out" data-k="del" style="color:#c8302c;border-color:#c8302c;margin-bottom:8px">Odebrat doklad</button>',
+      ()=>{ PROF=PROF.filter(id=>id!==OSOBA.id); store.set('prof',PROF); store.set('hist_'+OSOBA.id,[]);
+        if(PROF.length){ aktivuj(PROF[0]); store.set('in',false); go('splash'); } else { store.set('reg',false); store.set('in',false); go('onboard'); } },'Zrušit'); break;
+    case 'tab-profil': S.menu=false; go('profil',{back:S.screen==='historie'}); break;
     case 'historie': go('historie'); break;
-    case 'clearhist': S.history=[]; store.set('hist',[]); render(); break;
+    case 'clearhist': S.history=[]; store.set('hist_'+OSOBA.id,[]); render(); break;
     case 'x-zab': sheet('Zabezpečení','Přihlášení pomocí Face ID je zapnuté.'); break;
     case 'notif': sheet('Oznámení','Upozornění na blížící se konec platnosti dokladu je zapnuté.'); break;
     case 'jazyk': sheet('Jazyk','Čeština'); break;
-    case 'logout': store.set('in',false); go('splash'); break;
+    case 'logout': store.set('in',false); S.menu=false; go('splash'); break;
     case 'prokazat': go('qr'); break;
     case 'close': case 'domu': go('doklady',{back:true}); break;
     case 'qr': go('qr',{back:true}); break;
@@ -532,14 +586,14 @@ app.addEventListener('click',e=>{
     case 'scan': go('scan'); break;
     case 'share': logHist(true); vib(); go('shared'); break;
     case 'decline': logHist(false); go('declined'); break;
-    case 'foto': { const m=document.createElement('div'); m.className='modal'; m.innerHTML=`<img src="foto.jpg?v=2" alt="">`; m.onclick=()=>m.remove(); app.appendChild(m); } break;
+    case 'foto': { const m=document.createElement('div'); m.className='modal'; m.innerHTML=`<img src="${OSOBA.foto}" alt="">`; m.onclick=()=>m.remove(); app.appendChild(m); } break;
     case 'copy': toast('Zkopírováno'); break;
     case 'i-kontrola': sheet('Údaje ke kontrole','Ověřovatel si údaje může pouze prohlédnout. Nesmí je ukládat ani dále zpracovávat.'); break;
     case 'i-zprac': sheet('Údaje ke kontrole i zpracování','Tyto údaje si ověřovatel smí uložit, protože k tomu má zákonný důvod.'); break;
   }
 });
 
-if(!store.get('reg',false) && !store.get('in',false)) S.screen='onboard';
+if(!PROF.length) S.screen='onboard';
 render();
 if(store.get('in',false)) setTimeout(faceId,400);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) S.updated=new Date(); });
