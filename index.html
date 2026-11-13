@@ -97,8 +97,8 @@ img{-webkit-user-drag:none;pointer-events:none}
 .idc .lab{position:absolute;left:0;right:0;top:0;height:20%;display:flex;align-items:center;padding-left:9%;font-weight:700;color:#2a2a2a}
 .idc .num{position:absolute;left:9%;top:34%;color:#2e2e2e;letter-spacing:.3px}
 
-.doklady-h{font-size:22px;font-weight:500;color:#3a3a3a;padding:calc(var(--st) + 20px) 20px 0;margin:0}
-.wallet{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 16px 22px}
+.doklady-h{font-size:25px;font-weight:500;color:#3a3a3a;padding:calc(var(--st) + 20px) 20px 0;margin:0}
+.wallet{flex:1;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 30px}
 .wallet .idc .lab{font-size:15.5px}.wallet .idc .num{font-size:15.5px}
 .wallet button.cardb{display:block;width:100%;transition:transform .15s}
 .wallet button.cardb:active{transform:scale(.985)}
@@ -108,7 +108,7 @@ img{-webkit-user-drag:none;pointer-events:none}
 .detail-card .idc .lab{font-size:12.5px}.detail-card .idc .num{font-size:12.5px}
 .pill{display:flex;align-items:center;gap:8px;width:max-content;max-width:100%;margin:16px auto 0;padding:4px 14px 4px 10px;border:1px solid #c5ddbd;background:#eef6eb;border-radius:20px;font-size:12.5px;color:#2f5a25;letter-spacing:.1px}
 .pill svg{width:16px;height:16px;color:#2d6a1f;flex:none}
-.photo{display:block;width:96px;height:117px;margin:30px auto 0;border-radius:14px;overflow:hidden;position:relative;background:#eee}
+.photo{display:block;width:92px;height:118px;margin:30px auto 0;border-radius:8px;overflow:hidden;position:relative;background:#eee}
 .photo img{width:100%;height:100%;object-fit:cover;display:block}
 .photo .ex{position:absolute;right:5px;bottom:5px;width:22px;height:22px;border-radius:5px;background:rgba(255,255,255,.8);display:grid;place-items:center}
 .photo .ex svg{width:14px;height:14px;color:#333}
@@ -125,7 +125,7 @@ img{-webkit-user-drag:none;pointer-events:none}
 
 /* QR */
 .qrbox{flex:1;display:flex;flex-direction:column;align-items:center;padding:0 18px}
-.qr{width:min(88vw,360px);aspect-ratio:1;position:relative;margin-top:auto}
+.qr{width:min(78vw,330px);aspect-ratio:1;position:relative;margin-top:auto}
 .qr svg.code{width:100%;height:100%;display:block}
 .qr .emb{position:absolute;left:50%;top:50%;width:22%;height:22%;transform:translate(-50%,-50%);border-radius:12%;overflow:hidden}
 .qr .emb img{width:100%;height:100%;display:block}
@@ -194,6 +194,48 @@ img{-webkit-user-drag:none;pointer-events:none}
 .empty{text-align:center;color:var(--muted);padding:50px 20px;font-size:15px}
 .ver{text-align:center;color:#9a9a9a;font-size:12px;margin-top:24px}
 
+/* profil (podle App Store) */
+.sec{font-size:14px;color:#6f6f6f;margin:20px 4px 9px}
+.pcard{background:var(--card);border-radius:16px;overflow:hidden}
+.prow{width:100%;display:flex;align-items:center;gap:14px;padding:0 16px;min-height:58px;text-align:left;font-size:16px;color:#333}
+.prow:active{background:#f1f1f1}
+.prow>svg{width:24px;height:24px;color:#444;flex:none}
+.prow .end{margin-left:auto;width:20px;height:20px;color:#2f5fa7;flex:none}
+.prow .end.g{color:#2f5fa7}
+.prow.me{min-height:74px;border-bottom:1px solid #ececec;margin:0 0 0;}
+.prow.me .avc{width:42px;height:42px;border-radius:50%;background:#f0f0f0;display:grid;place-items:center;flex:none}
+.prow.me .avc svg{width:26px;height:26px;color:#444}
+.prow.me b{display:block;font-weight:500;font-size:16px;color:#2b2b2b}
+.prow.me small{display:block;font-size:13px;color:#6f6f6f;margin-top:3px}
+.tg{margin-left:auto;width:50px;height:30px;border-radius:15px;background:#2f5fa7;position:relative;flex:none;transition:background .2s}
+.tg::after{content:"";position:absolute;top:3px;right:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 2px rgba(0,0,0,.2);transition:right .2s}
+.tg.off{background:#c9c9c9}.tg.off::after{right:23px}
+.note{font-size:12.5px;color:#7a7a7a;margin:9px 4px 0;line-height:1.5}
+.dia{margin:26px 4px 6px;font-size:11px;letter-spacing:1.4px;font-weight:700;color:#41536f;line-height:1.35}
+/* onboarding */
+.onb{background:#2f62a4;color:#fff}
+.onb .top{padding:calc(var(--st) + 24px) 0 0;text-align:center}
+.onb .logo{width:56px;height:56px;border-radius:12px;margin:0 auto 10px}
+.onb .ttl{font-size:19px;font-weight:500}
+.slides{flex:1;display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.slides::-webkit-scrollbar{display:none}
+.slide{flex:0 0 100%;scroll-snap-align:start;display:flex;flex-direction:column;padding:0 24px}
+.slide .ill{flex:1;display:flex;align-items:flex-end;justify-content:center;min-height:150px}
+.slide .ill svg{width:min(62vw,250px);height:auto;display:block}
+.slide h3{font-size:22px;font-weight:700;margin:18px 0 8px}
+.slide p{font-size:16px;line-height:1.5;margin:0;opacity:.95;min-height:72px}
+.dots{display:flex;justify-content:center;gap:8px;margin:22px 0 0}
+.dots i{width:9px;height:9px;border-radius:5px;background:rgba(255,255,255,.85);transition:width .2s}
+.dots i.on{width:44px}
+.onb .bottom{padding:30px 22px calc(var(--sb) + 22px)}
+.reg{width:100%;display:flex;align-items:center;gap:14px;background:#fff;color:#2b2b2b;border-radius:12px;padding:14px 16px;text-align:left}
+.reg:active{background:#eef2f8}
+.reg .ri{width:44px;height:44px;border-radius:8px;overflow:hidden;flex:none}
+.reg .ri img{width:100%;height:100%;display:block}
+.reg b{display:block;color:#2f5fa7;font-weight:500;font-size:17px}
+.reg small{display:block;color:#666;font-size:13px;margin-top:2px}
+.reg .chev{margin-left:auto;width:22px;height:22px;color:#2f5fa7}
+.onb .rov{display:block;margin:20px auto 0;font-weight:700;font-size:14.5px}
 /* modal, toast, sheet */
 .modal{position:absolute;inset:0;background:rgba(0,0,0,.9);z-index:30;display:grid;place-items:center;animation:fd .2s}
 .modal img{width:78%;max-width:340px;border-radius:12px}
@@ -252,6 +294,13 @@ const I = {
   globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.6 5.7 3.6 9s-1.1 6.3-3.6 9c-2.5-2.7-3.6-5.7-3.6-9S9.5 5.7 12 3z"/></svg>',
   help:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 114 2c-.9.6-1.5 1.1-1.5 2.2M12 17v.3"/></svg>',
   out:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a2 2 0 012 2v12a2 2 0 01-2 2h-3M10 8l-4 4 4 4M6 12h10"/></svg>',
+  chevd:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 9l7 7 7-7"/></svg>',
+  ext:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M13 4h7v7M20 4l-9 9M18 14v4.5a1.5 1.5 0 01-1.5 1.5h-11A1.5 1.5 0 014 18.5v-11A1.5 1.5 0 015.5 6H10"/></svg>',
+  exit:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 7V5.5A1.5 1.5 0 0110.5 4h8A1.5 1.5 0 0120 5.5v13a1.5 1.5 0 01-1.5 1.5h-8A1.5 1.5 0 019 18.5V17M14 12H3.5M7 8.5L3.5 12 7 15.5"/></svg>',
+  lockS:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="6" y="10.5" width="12" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 017 0v3"/></svg>',
+  bio:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M3.5 8V5.5a2 2 0 012-2H8M16 3.5h2.5a2 2 0 012 2V8M20.5 16v2.5a2 2 0 01-2 2H16M8 20.5H5.5a2 2 0 01-2-2V16M9 9v1.5M15 9v1.5M12 9v4h-1M9 16c1.7 1.3 4.3 1.3 6 0"/></svg>',
+  shield:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.5-3.2 8-7.5 9.5-4.3-1.5-7.5-5-7.5-9.5V6z"/><circle cx="12" cy="10.5" r="1.3" fill="currentColor"/><path d="M12 12v3.5" stroke-linecap="round"/></svg>',
+  devices:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><rect x="3" y="5" width="13" height="10" rx="1.5"/><path d="M1.5 18h13"/><rect x="17" y="8" width="5.5" height="11" rx="1.2"/></svg>',
   faceid:'<svg viewBox="0 0 64 64" fill="none" stroke="#1c1c1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 20V12a6 6 0 016-6h8M44 6h8a6 6 0 016 6v8M58 44v8a6 6 0 01-6 6h-8M20 58h-8a6 6 0 01-6-6v-8"/><path d="M22 24v4M42 24v4M32 24v12h-3M24 44c4.5 4 11.5 4 16 0"/></svg>',
   faceok:'<svg viewBox="0 0 64 64" fill="none" stroke="#1c1c1e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><circle cx="32" cy="32" r="25"/><path d="M21 33l8 8 14-16"/></svg>',
 };
@@ -326,7 +375,24 @@ function tabs(active){
    <button class="tab ${active==='profil'?'on':''}" data-a="tab-profil">${active==='profil'?I.profF:I.prof}<span>Profil</span></button></div>`;
 }
 
+const ONB = [
+['Nová éra prokazování totožnosti', 'Občanský průkaz v mobilu. Prokážete se rychle, bezpečně a bez plastové karty.', '<svg viewBox="0 0 250 230" fill="none"><defs><linearGradient id="fdv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M30 230V30a26 26 0 0126-26h138a26 26 0 0126 26v200" stroke="url(#fdv)" stroke-width="5"/><path d="M95 4h60v8a8 8 0 01-8 8h-44a8 8 0 01-8-8z" fill="#fff" fill-opacity=".22"/><rect x="60" y="95" width="130" height="84" rx="9" fill="#fff" fill-opacity=".12" stroke="#fff" stroke-opacity=".8" stroke-width="2.5"/><circle cx="92" cy="128" r="11" stroke="#fff" stroke-width="2.5"/><path d="M74 162c3-10 9-14 18-14s15 4 18 14" stroke="#fff" stroke-width="2.5"/><path d="M124 120h48M124 136h48M124 152h32" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>'],
+['Maximální soukromí', 'Vždy předáváte pouze konkrétní vyžádané údaje, ne celou občanku. Co protistrana vidět nemusí, to neuvidí.', '<svg viewBox="0 0 250 230" fill="none"><defs><linearGradient id="fdv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M30 230V30a26 26 0 0126-26h138a26 26 0 0126 26v200" stroke="url(#fdv)" stroke-width="5"/><path d="M95 4h60v8a8 8 0 01-8 8h-44a8 8 0 01-8-8z" fill="#fff" fill-opacity=".22"/><path d="M125 80l52 20v38c0 32-22 55-52 66-30-11-52-34-52-66v-38z" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".75" stroke-width="2.5"/><rect x="107" y="135" width="36" height="30" rx="5" stroke="#fff" stroke-width="2.5"/><path d="M114 135v-8a11 11 0 0122 0v8" stroke="#fff" stroke-width="2.5"/><circle cx="125" cy="146" r="4" fill="#fff"/><path d="M117 160c1.5-5 4.5-7 8-7s6.5 2 8 7" stroke="#fff" stroke-width="2.5"/></svg>'],
+['Rychlé ověření totožnosti', 'Navážete spojení předložením či naskenováním QR kódu a údaje bezpečně nasdílíte online nebo offline přes Bluetooth.', '<svg viewBox="0 0 250 230" fill="none"><defs><linearGradient id="fdv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M30 230V30a26 26 0 0126-26h138a26 26 0 0126 26v200" stroke="url(#fdv)" stroke-width="5"/><path d="M95 4h60v8a8 8 0 01-8 8h-44a8 8 0 01-8-8z" fill="#fff" fill-opacity=".22"/><rect x="80" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="80" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="90" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="100" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="110" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="120" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="130" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="140" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="150" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="90" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="100" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="110" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="120" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="130" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="140" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.15"/><rect x="150" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="160" y="160" width="9" height="9" rx="1.5" fill="#fff" fill-opacity="0.85"/><rect x="80" y="80" width="29" height="29" rx="5" stroke="#fff" stroke-width="3" fill="#2f62a4"/><rect x="141" y="80" width="29" height="29" rx="5" stroke="#fff" stroke-width="3" fill="#2f62a4"/><rect x="80" y="141" width="29" height="29" rx="5" stroke="#fff" stroke-width="3" fill="#2f62a4"/><rect x="89" y="89" width="11" height="11" rx="2" fill="#fff"/><rect x="150" y="89" width="11" height="11" rx="2" fill="#fff"/><rect x="89" y="150" width="11" height="11" rx="2" fill="#fff"/></svg>'],
+['Jedna aplikace pro občany i ověřovatele', 'Aplikace v sobě má funkce pro občany i pro ověřovatele. Ti si tedy nemusejí instalovat speciální aplikaci.', '<svg viewBox="0 0 250 230" fill="none"><defs><linearGradient id="fdv" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset=".8" stop-color="#fff" stop-opacity="0"/></linearGradient></defs><path d="M30 230V30a26 26 0 0126-26h138a26 26 0 0126 26v200" stroke="url(#fdv)" stroke-width="5"/><path d="M95 4h60v8a8 8 0 01-8 8h-44a8 8 0 01-8-8z" fill="#fff" fill-opacity=".22"/><rect x="72" y="90" width="48" height="86" rx="8" stroke="#fff" stroke-width="2.5" fill="#fff" fill-opacity=".1"/><rect x="132" y="90" width="48" height="86" rx="8" stroke="#fff" stroke-width="2.5" fill="#fff" fill-opacity=".1"/><path d="M84 132l8 8 16-17" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><path d="M144 122h24M144 134h24M144 146h16" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg>']
+];
 const V = {
+onboard(){
+  return `<div class="screen onb fade"><div class="top"><div class="logo">${EMBLEM}</div><div class="ttl">eDoklady</div></div>
+   <div class="slides" id="slides">${ONB.map(o=>`<div class="slide"><div class="ill">${o[2]}</div><h3>${o[0]}</h3><p>${o[1]}</p></div>`).join('')}</div>
+   <div class="dots" id="dots">${ONB.map((o,i)=>`<i class="${i?'':'on'}"></i>`).join('')}</div>
+   <div class="bottom"><button class="reg" data-a="register"><span class="ri">${EMBLEM}</span><span><b>Registrovat se</b><small>Pomocí Identity občana</small></span><span class="chev">${I.chev}</span></button>
+   <button class="rov" data-a="overovatel">Registrace ověřovatele</button></div></div>`;
+},
+registering(){
+  return `<div class="screen fade" style="background:#fafafa">${hdr('Registrace')}
+   <div class="done"><div class="spin"></div><h2 id="rgt">Ověřování přes Identitu občana</h2><p id="rgp">Chvíli strpení…</p></div></div>`;
+},
 splash(){
   return `<div class="screen splash fade">
    <div class="top"><div class="logo">${EMBLEM}</div><h2>eDoklady</h2><div class="sub">nová éra prokazování totožnosti</div>
@@ -356,18 +422,29 @@ detail(back){
    </div>${tabs('doklady')}</div>`;
 },
 profil(back){
-  return `<div class="screen${back?' back':' fade'}"><h1 class="prof-h">Profil</h1>
+  const bio=store.get('bio',true);
+  return `<div class="screen${back?' back':' fade'}">${hdr('Profil')}
    <div class="body">
-    <div class="prof"><div class="av">${I.user}</div><div><div style="font-weight:500;font-size:16px">${OSOBA.jmeno} ${OSOBA.prijmeni}</div><div style="font-size:13px;color:var(--muted);margin-top:3px">Občan</div></div></div>
-    <div class="menu">
-     <button data-a="historie">${I.hist}Historie prokazování<span class="chev">${I.chev}</span></button>
-     <button data-a="zabezpeceni">${I.lock}Zabezpečení<span class="chev">${I.chev}</span></button>
-     <button data-a="notif">${I.bell}Oznámení<span class="chev">${I.chev}</span></button>
-     <button data-a="jazyk">${I.globe}Jazyk<span class="chev">${I.chev}</span></button>
-     <button data-a="about">${I.help}Nápověda<span class="chev">${I.chev}</span></button>
+    <div class="sec" style="margin-top:6px">Aktivní profil a jeho přepnutí</div>
+    <div class="pcard">
+     <button class="prow me" data-a="ucty"><span class="avc">${I.user}</span><span><b>${OSOBA.jmeno} ${OSOBA.prijmeni}</b><small>Občan</small></span><span class="end" style="color:#555">${I.chevd}</span></button>
+     <button class="prow" data-a="logout">${I.exit}Odhlásit se<span class="end">${I.chev}</span></button>
     </div>
-    <div class="menu"><button class="red" data-a="logout">${I.out}Odhlásit se</button></div>
-    <div class="ver">Verze 1.4.2</div>
+    <div class="sec">Zabezpečení</div>
+    <div class="pcard">
+     <button class="prow" data-a="pinzmena">${I.lockS}Změna přihlašovacího PINu<span class="end">${I.chev}</span></button>
+     <button class="prow" data-a="bio">${I.bio}Biometrie pro přihlášení<span class="tg${bio?'':' off'}"></span></button>
+    </div>
+    <div class="sec">Může se hodit</div>
+    <div class="pcard">
+     <button class="prow" data-a="historie">${I.hist}Historie prokazování<span class="end">${I.chev}</span></button>
+     <button class="prow" data-a="about">${I.help}Nápověda<span class="end">${I.ext}</span></button>
+     <button class="prow" data-a="gdpr">${I.shield}Zpracování osobních údajů<span class="end">${I.ext}</span></button>
+     <button class="prow" data-a="zarizeni">${I.devices}<span>Správa připojených zařízení v Portálu občana</span><span class="end">${I.ext}</span></button>
+    </div>
+    <div class="note">V Portálu občana můžete zobrazit, blokovat a odebrat všechna mobilní zařízení, ve kterých máte eDoklady aktivní.</div>
+    <div class="dia">DIGITÁLNÍ<br>A INFORMAČNÍ<br>AGENTURA</div>
+    <div class="ver" style="text-align:left;margin:4px 4px 0">Verze 1.4.2</div>
    </div>${tabs('profil')}</div>`;
 },
 historie(back){
@@ -378,8 +455,8 @@ historie(back){
     ${h.length?'<button class="btn txt" data-a="clearhist" style="margin-top:16px">Vymazat historii</button>':''}</div></div>`;
 },
 qr(back){
-  return `<div class="screen${back?' back':''}" style="background:#fafafa">${hdr('Prokázání údajů','close')}
-   <div class="h2" style="margin-top:22px">Navázání spojení</div>
+  return `<div class="screen${back?' back':''}" style="background:#fafafa">${hdr('Prokázání údajů','','close')}
+   <div class="h2" style="margin-top:10px;font-size:23px">Navázání spojení</div>
    <div class="qrbox"><button class="qr" data-a="simscan">${qrSvg(Date.now())}<span class="emb">${EMBLEM}</span></button>
     <div class="hint">Ukažte ověřovateli QR kód, nebo u přepážky</div></div>
    <div class="foot"><button class="btn out" data-a="scan">${I.camera}Naskenujte QR kód ověřovatele</button></div></div>`;
@@ -417,7 +494,9 @@ declined(){
 },
 };
 
-function render(back){ app.innerHTML = V[S.screen](back); if(S.screen==='scan') startCam(); }
+function render(back){ app.innerHTML = V[S.screen](back); if(S.screen==='scan') startCam();
+  if(S.screen==='onboard'){ const sl=document.getElementById('slides'), d=[...document.querySelectorAll('#dots i')];
+    sl.addEventListener('scroll',()=>{ const i=Math.round(sl.scrollLeft/sl.clientWidth); d.forEach((x,j)=>x.classList.toggle('on',i===j)); },{passive:true}); } }
 async function startCam(){
   const cam=document.getElementById('cam');
   try{
@@ -450,6 +529,13 @@ app.addEventListener('click',e=>{
   const b=e.target.closest('[data-a]'); if(!b) return;
   switch(b.dataset.a){
     case 'login': faceId(); break;
+    case 'register': go('registering'); later(()=>{ const t=document.getElementById('rgt'),q=document.getElementById('rgp'); if(t){t.textContent='Stahování dokladu';q.textContent='Občanský průkaz se ukládá do zařízení…';} },1500); later(()=>{ store.set('reg',true); store.set('in',true); S.updated=new Date(); go('doklady'); },3000); break;
+    case 'overovatel': sheet('Registrace ověřovatele','Ověřovatelé (úřady, firmy, obchody) se registrují v Portálu ověřovatele. V této ukázce je dostupná jen strana občana.'); break;
+    case 'ucty': sheet('Přepnutí profilu','Na tomto zařízení je přihlášený jediný profil.'); break;
+    case 'pinzmena': sheet('Změna přihlašovacího PINu','Nejdřív zadáte současný PIN, potom dvakrát nový šestimístný PIN.'); break;
+    case 'bio': { const v=!store.get('bio',true); store.set('bio',v); b.querySelector('.tg').classList.toggle('off',!v); } break;
+    case 'gdpr': sheet('Zpracování osobních údajů','Údaje z dokladu se ukládají jen v tomto zařízení a sdílejí se pouze s vaším souhlasem, vždy jen ty vyžádané.'); break;
+    case 'zarizeni': sheet('Připojená zařízení','V Portálu občana můžete zobrazit, blokovat a odebrat všechna mobilní zařízení, ve kterých máte eDoklady aktivní.'); break;
     case 'about': sheet('eDoklady','Aplikace pro prokazování totožnosti digitálním občanským průkazem. Tato verze je výuková ukázka se smyšlenou osobou, určená k předvedení – nejde o skutečný doklad.'); break;
     case 'kde': sheet('Kde mohu eDoklady použít?','Na úřadech, na poště, u lékaře, v bance, při kontrole věku v obchodě nebo u policie – všude, kde má ověřovatel aplikaci eDoklady nebo webovou čtečku.'); break;
     case 'tab-doklady': go('doklady',{back:S.screen==='detail'}); break;
@@ -458,7 +544,7 @@ app.addEventListener('click',e=>{
     case 'tab-profil': go('profil',{back:S.screen==='historie'}); break;
     case 'historie': go('historie'); break;
     case 'clearhist': S.history=[]; store.set('hist',[]); render(); break;
-    case 'zabezpeceni': sheet('Zabezpečení','Přihlášení pomocí Face ID je zapnuté.'); break;
+    case 'x-zab': sheet('Zabezpečení','Přihlášení pomocí Face ID je zapnuté.'); break;
     case 'notif': sheet('Oznámení','Upozornění na blížící se konec platnosti dokladu je zapnuté.'); break;
     case 'jazyk': sheet('Jazyk','Čeština'); break;
     case 'logout': store.set('in',false); go('splash'); break;
@@ -476,6 +562,7 @@ app.addEventListener('click',e=>{
   }
 });
 
+if(!store.get('reg',false) && !store.get('in',false)) S.screen='onboard';
 render();
 if(store.get('in',false)) setTimeout(faceId,400);
 document.addEventListener('visibilitychange',()=>{ if(!document.hidden) S.updated=new Date(); });
