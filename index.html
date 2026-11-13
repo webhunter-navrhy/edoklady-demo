@@ -10,8 +10,8 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="eDoklady">
 <meta name="theme-color" content="#f5f5f5">
-<link rel="apple-touch-icon" href="icon-180.png?v=3">
-<link rel="icon" href="icon-192.png?v=3">
+<link rel="apple-touch-icon" href="icon-180.png?v=4">
+<link rel="icon" href="icon-192.png?v=4">
 <link rel="manifest" href="manifest.webmanifest?v=2">
 <link rel="preload" href="fonts/roboto-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/roboto-latin-ext.woff2" as="font" type="font/woff2" crossorigin>
@@ -92,7 +92,7 @@ img{-webkit-user-drag:none;pointer-events:none}
 .fab svg{width:26px;height:26px}
 
 /* doklad */
-.idc{position:relative;aspect-ratio:1.62;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.12);background:#cfe6fb url(card.jpg?v=3) center/cover no-repeat}
+.idc{position:relative;aspect-ratio:1.62;border-radius:10px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.12);background:#cfe6fb url(card.jpg?v=4) center/cover no-repeat}
 .idc .lab{position:absolute;left:0;right:0;top:0;height:20%;display:flex;align-items:center;padding-left:9%;font-weight:700;color:#2a2a2a}
 .idc .num{position:absolute;left:9%;top:34%;color:#2e2e2e;letter-spacing:.3px}
 
@@ -308,7 +308,7 @@ const I = {
 };
 
 function card(){ return `<div class="idc"><span class="lab">Občanský průkaz</span><span class="num">${OSOBA.cislo}</span></div>`; }
-const EMBLEM = `<img src="emblem.png?v=3" alt="">`;
+const EMBLEM = `<img src="emblem.png?v=4" alt="">`;
 const PODPIS = `<svg class="sig" viewBox="0 0 120 34" fill="none" stroke="#1e2a55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 25c3-9 7-17 10-17s-1 13-3 16c4-7 8-11 10-9s-2 8 1 8 5-7 8-7-1 6 2 6 4-5 7-5 0 4 3 4c6 0 10-6 14-6s3 4 7 4c5 0 9-3 14-3s7 2 12 1"/><path d="M30 12c10-2 22-3 34-2"/></svg>`;
 
 /* QR vzor (náhodný, nic nenese) */
